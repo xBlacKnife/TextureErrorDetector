@@ -57,14 +57,14 @@ def create_id() :
 
 #Guarda la información en un archivo JSON
 def export_info_toJSON(name, xSize, ySize, failure) :
-	if(not os.path.exists(os.getcwd()+"/Log.Json")) :
+	if(not os.path.exists(os.getcwd()+"/Log.json")) :
 		data = {}
 		data['Results'] = []
-		with open('Log.Json', 'w') as outfile :
+		with open('Log.json', 'w') as outfile :
 			json.dump(data, outfile)
 			outfile.close()
 
-	with open('Log.Json') as json_file :
+	with open('Log.json') as json_file :
 		data = json.load(json_file)
 		data['Results'].append({
 			'name' : name,
@@ -73,7 +73,7 @@ def export_info_toJSON(name, xSize, ySize, failure) :
 			'failure' : failure 
 		})
 
-	with open('Log.Json', 'w') as outfile :
+	with open('Log.json', 'w') as outfile :
 		json.dump(data, outfile)
 
 
