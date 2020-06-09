@@ -3,7 +3,7 @@ import numpy as np
 import os
 import glob
 import os
-from PIL import Image
+from PIL import Image, ImageOps
 import sys
 
 ##########################################################################
@@ -51,16 +51,42 @@ def existe_imagen(nombre_imagen):
     return False
 
 
-""" 
+def marcar_coloreando_encima(img, mascara):
+    # print(img.shape) #900,1600,3
+    # print(mascara.shape)  # 900,1600,3
+    for i in range(0, img.shape[0]):
+        for j in range(0, img.shape[1]):
+            if(mascara[i][j]):
+                img[i][j] = [255, 255, 255]
+
+    cv2.imwrite(PATH_MARCADAS + "coloreadoencima" +
+                IMG_MARCADA + ".jpg", img)
+
+
+def marcar_eliminando_pixeles(nombre, extension, mascara):
+
+    img_rgb = Image.open(PATH_ORIGINALES +
+                         nombre + extension)
+    img_alpha = Image.open(PATH_MARCADAS + nombre +
+                           "_mascara" + extension).convert('L').resize(img_rgb.size)
+
+    img_alpha = ImageOps.invert(img_alpha)
+
+    img_rgb.putalpha(img_alpha)
+    img_rgb.save(PATH_MARCADAS + nombre +
+                 "eliminandopixelss" + ".png")
+
+
+"""
     Se utiliza una imagen para crear una máscara en función de los píxeles que se detectan como errores
     de textura
- 
-    Parameters: 
+
+    Parameters:
     nombre_imagen (string): Nombre del archivo a procesar
-  
-    Returns: 
+
+    Returns:
     np Array: Devuelve un array de numpy con la información de la máscara con valores de 0 y 1 dependiendo de si en ese
-    píxel se ha detectado un error o no. 
+    píxel se ha detectado un error o no.
 
 """
 
@@ -80,7 +106,9 @@ def crea_mascara(nombre_imagen):
     nombre_patron = sys.argv[2]
 
     imagen_roja = Image.open(PATH_PATRONES + nombre_patron + EXTENSION_PATRON)
+
     imagen_roja_rgb = imagen_roja.convert("RGB")
+
     valores_imagen_roja_rgb = imagen_roja_rgb.getpixel((0, 0))
 
     # Establecemos el rango mínimo y máximo de (Blue, Green, Red): Dependiendo siempre del patron dado
@@ -98,11 +126,15 @@ def crea_mascara(nombre_imagen):
     #    -Su valor R esté entre 0 y 120
 
     # Detectamos los píxeles que estén dentro del rango que hemos establecido:
-    mask = cv2.inRange(img, azul_bajos, azul_altos)
+    mascara = cv2.inRange(img, azul_bajos, azul_altos)
 
     # Guardamos unicamente la imagen marcada
     cv2.imwrite(PATH_MARCADAS + nombre_sin_extension +
-                IMG_MARCADA + extension_archivo, mask)
+                "_mascara" + extension_archivo, mascara)
+
+    #marcar_coloreando_encima(img, mascara)
+    marcar_eliminando_pixeles(nombre_sin_extension,
+                              extension_archivo, mascara)
 
 
 def main():
