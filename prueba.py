@@ -5,6 +5,7 @@ import glob
 import os
 from PIL import Image, ImageOps
 import sys
+import json
 
 ##########################################################################
 ##                                                                      ##
@@ -21,11 +22,19 @@ PATH_PATRONES = "./Patrones/"
 # Path donde se guardan los archivos marcados con los errores
 PATH_MARCADAS = "./Marcadas/"
 
+# Path donde se guardan los archivos que guardan la información de las coordenadas con pixeles detectados como error
+PATH_COORDENADAS = "./Jsons/"
 # Extensión de los patrones
 EXTENSION_PATRON = ".jpg"
 
+# Extensión de los .json
+EXTENSION_JSON = ".json"
+
 # Añadido para diferenciar que está marcada
 IMG_MARCADA = "_marcada"
+
+# Color en formato BGR con el que se repintan los píxeles que dan error
+COLORBGR_SOBREPINTADO = [255, 255, 255]
 
 ######################### FIN CONSTANTES ##################################
 
@@ -51,16 +60,66 @@ def existe_imagen(nombre_imagen):
     return False
 
 
+'''
+    Se utiliza la mascara obtenida para generar un archivo en formato json con las coordenadas de los pixeles que se han 
+    detectado como error
+
+    Parameters:
+    nombre (string): Nombre del archivo a procesar
+    shape0 (int): Alto de la foto
+    shape1 (int): Ancho de la foto
+    mascara (array): Array de 0s y 1s con la info de los pixeles que son un error
+    
+'''
+
+
+def guardar_json(nombre, shape0, shape1, mascara):
+    pixeles_marcados = {}
+    pixeles_marcados['pixelesMarcados'] = []
+    print(shape0, shape1)
+    for i in range(0, shape0):
+        for j in range(0, shape1):
+            if(mascara[i][j]):
+                coordenadas = {}
+                coordenadas['x'] = i
+                coordenadas['y'] = j
+                pixeles_marcados['pixelesMarcados'].append(coordenadas)
+
+    with open(PATH_COORDENADAS + nombre + EXTENSION_JSON, 'w') as outfile:
+        json.dump(pixeles_marcados, outfile, indent=2)
+
+
+'''
+    Se utiliza la imagen original y la máscara para pintar encima de la imagen original los píxeles que 
+    son detectados como error
+
+    Parameters:
+    img (string): Array con el contenido de los pixeles en formato BGR de la foto original
+    mascara (array): Array de 0s y 1s con la info de los pixeles que son un error
+
+'''
+
+
 def marcar_coloreando_encima(img, mascara):
-    # print(img.shape) #900,1600,3
-    # print(mascara.shape)  # 900,1600,3
     for i in range(0, img.shape[0]):
         for j in range(0, img.shape[1]):
             if(mascara[i][j]):
-                img[i][j] = [255, 255, 255]
+                img[i][j] = COLORBGR_SOBREPINTADO
 
-    cv2.imwrite(PATH_MARCADAS + "coloreadoencima" +
+    cv2.imwrite(PATH_MARCADAS + "_coloreadoencima" +
                 IMG_MARCADA + ".jpg", img)
+
+
+'''
+    Se utiliza la imagen original y la máscara para eliminar en la imagen original los píxeles que 
+    son detectados como error
+
+    Parameters:
+    nombre (string): Nombre de la foto original
+    extension (string): Extensión de la foto original
+    mascara (array): Array de 0s y 1s con la info de los pixeles que son un error
+
+'''
 
 
 def marcar_eliminando_pixeles(nombre, extension, mascara):
@@ -74,7 +133,7 @@ def marcar_eliminando_pixeles(nombre, extension, mascara):
 
     img_rgb.putalpha(img_alpha)
     img_rgb.save(PATH_MARCADAS + nombre +
-                 "eliminandopixelss" + ".png")
+                 "_eliminandopixeles" + ".png")
 
 
 """
@@ -133,8 +192,8 @@ def crea_mascara(nombre_imagen):
                 "_mascara" + extension_archivo, mascara)
 
     #marcar_coloreando_encima(img, mascara)
-    marcar_eliminando_pixeles(nombre_sin_extension,
-                              extension_archivo, mascara)
+    #marcar_eliminando_pixeles(nombre_sin_extension, extension_archivo, mascara)
+    guardar_json(nombre_sin_extension, img.shape[0], img.shape[1], mascara)
 
 
 def main():
@@ -146,6 +205,9 @@ def main():
         crea_mascara(nombre_imagen)
 
     # En caso contrario salta un error
+    else:
+        raise FileNotFoundError(
+            "No se ha encontrado el archivo " + nombre_imagen + " en la carpeta " + 'Originales')
 
 
 if __name__ == "__main__":
