@@ -76,6 +76,7 @@ def existe_imagen(nombre_imagen):
 def guardar_json(nombre, shape0, shape1, mascara):
     pixeles_marcados = {}
     pixeles_marcados['pixelesMarcados'] = []
+    pixeles_marcados['Fallo'] = calcular_porcentaje_fallo(mascara)
     print(shape0, shape1)
     for i in range(0, shape0):
         for j in range(0, shape1):
@@ -103,11 +104,33 @@ def guardar_json(nombre, shape0, shape1, mascara):
 def marcar_coloreando_encima(img, mascara):
     for i in range(0, img.shape[0]):
         for j in range(0, img.shape[1]):
+            print(mascara[i][j])
             if(mascara[i][j]):
                 img[i][j] = COLORBGR_SOBREPINTADO
 
     cv2.imwrite(PATH_MARCADAS + "_coloreadoencima" +
                 IMG_MARCADA + ".jpg", img)
+
+'''
+    Se utiliza la imagen original y la máscara para calcular el porcentaje de pixeles que se han visto
+    afectados y saber así, si existe o no alguna textura fallida
+
+    Parameters:
+    img (string): Array con el contenido de los pixeles en formato BGR de la foto original
+    mascara (array): Array de 0s y 1s con la info de los pixeles que son un error
+
+'''
+
+def calcular_porcentaje_fallo(mascara):
+    total=0
+    fallo=0
+    for i in range(0, mascara.shape[0]):
+        for j in range(0, mascara.shape[1]):
+            if(mascara[i][j]):
+                fallo+=1
+            total+=1
+    return((fallo/total)*100)
+
 
 
 '''
@@ -205,7 +228,7 @@ def main():
         crea_mascara(nombre_imagen)
 
     # En caso contrario salta un error
-    else:
+    else:   
         raise FileNotFoundError(
             "No se ha encontrado el archivo " + nombre_imagen + " en la carpeta " + 'Originales')
 
