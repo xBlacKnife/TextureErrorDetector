@@ -8,17 +8,18 @@
 #  -----------------------------------
 #  | 	PRUEBA DE CONCEPTO AVANZADA  |
 #  -----------------------------------
+import PIL
+from PIL import Image
 from skimage.metrics import structural_similarity as ssim
 import matplotlib.pyplot as plt
 import numpy as np
 import argparse
 import imutils
 import uuid
+import glob
 import os
 import json
 import cv2
-
-
 
 
 #Devuelve la diferencia entre imágenes tanto en porcentaje como una imagen
@@ -56,7 +57,7 @@ def create_id() :
 	return str(uuid.uuid4())
 
 #Guarda la información en un archivo JSON
-def export_info_toJSON(name, xSize, ySize, failure) :
+def export_info_toJSON(id, xSize, ySize, failure, imageName) :
 	if(not os.path.exists(os.getcwd()+"/Log.json")) :
 		data = {}
 		data['Results'] = []
@@ -67,7 +68,8 @@ def export_info_toJSON(name, xSize, ySize, failure) :
 	with open('Log.json') as json_file :
 		data = json.load(json_file)
 		data['Results'].append({
-			'name' : name,
+			'name' : id,
+			'Image' : imageName,
 			'X_Size' : xSize,
 			'Y_Size' : ySize,
 			'failure' : failure 
@@ -76,18 +78,40 @@ def export_info_toJSON(name, xSize, ySize, failure) :
 	with open('Log.json', 'w') as outfile :
 		json.dump(data, outfile)
 
+#Busca un archivo en una ruta
+def find(name, path):
+	for file2 in glob.glob(path + "*.png") : 
+		if name == os.path.basename(file2) : 
+			return file2
 
-# Código para probar que todo funciona
-original, greyOriginal = load_and_Convert("images/gmod_screenshoot_1.jpg")
-new, greyNew = load_and_Convert("images/gmod_screenshoot_2.jpg")
+#Comprueba si la imagen obtenida ya ha sido analizada
+def AlreadyAnalized(name) :
+	if(os.path.exists(os.getcwd()+"/Log.json")) :
+		with open('Log.json') as json_file :
+			data = json.load(json_file)
+			print(data['Results'])
+			for i in data['Results'] :
+				print(i)
+				if i["Image"] == name :
+					print(name)
+					return True
+	return False
 
-diff, score = SSIM(greyOriginal, greyNew)
-print("SSIM: {}".format(score))
+#Analiza las imágenes de la ruta indicada como capturas con las imágenes originales
+#El path debe ser el de las imágenes capturadas
+def analize(CapturePath = "", OriginalPath = "") : 
+	for file in glob.glob(CapturePath + "*.png") :
+		if not AlreadyAnalized(os.path.basename(file)) :
+			org = find(os.path.basename(file), os.getcwd() +'/'+OriginalPath )
+			original, greyOriginal = load_and_Convert(file)
+			new, greyNew = load_and_Convert(org)
+			diff, score = SSIM(greyOriginal, greyNew) 
+			print("SSIM: {}".format(score))
+			h, w= diff.shape
+			imId = create_id()
+			save_in_folder(imId, diff)
+			export_info_toJSON(imId, w, h, score, os.path.basename(file))
 
-h, w= diff.shape
-
-imId = create_id()
-save_in_folder(imId, diff)
-export_info_toJSON(imId, w, h, score)
+analize("images/Captures/", "images/Original/")
 
 
