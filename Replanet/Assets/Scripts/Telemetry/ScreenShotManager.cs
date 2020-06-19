@@ -10,8 +10,6 @@ public class ScreenShotManager : Singleton<ScreenShotManager>
 	private string camerainfoRoute;
 	private string camerainfoFile;
 
-	string[] fields = { "Level", "Camera_Position", "X", "Y", "Z", "Camera_Rotation", "Quaterniones" };
-
 	private void Start()
 	{
 		screenshotRoute = Application.persistentDataPath + "/Screenshots/";
@@ -50,20 +48,20 @@ public class ScreenShotManager : Singleton<ScreenShotManager>
 
 		//Añade las posiciones de la cámara a un diccionario para su posterior uso
 		Dictionary<string, object> CameraPositions = new Dictionary<string, object>();
-		CameraPositions.Add("X", Camera.main.transform.position.x);
-		CameraPositions.Add("Y", Camera.main.transform.position.y);
-		CameraPositions.Add("Z", Camera.main.transform.position.z);
+		CameraPositions.Add("X", Camera.main.transform.position.x.ToString());
+		CameraPositions.Add("Y", Camera.main.transform.position.y.ToString());
+		CameraPositions.Add("Z", Camera.main.transform.position.z.ToString());
 
 		//Añade las rotaciones de la cámara a un diccionario para su posterior uso.
 		Dictionary<string, object> CameraRatations = new Dictionary<string, object>();
-		CameraRatations.Add("X", Camera.main.transform.rotation.x);
-		CameraRatations.Add("Y", Camera.main.transform.rotation.y);
-		CameraRatations.Add("Z", Camera.main.transform.rotation.z);
-		CameraRatations.Add("W", Camera.main.transform.rotation.w);
+		CameraRatations.Add("X", Camera.main.transform.rotation.x.ToString());
+		CameraRatations.Add("Y", Camera.main.transform.rotation.y.ToString());
+		CameraRatations.Add("Z", Camera.main.transform.rotation.z.ToString());
+		CameraRatations.Add("W", Camera.main.transform.rotation.w.ToString());
 
 		//Un nuevo diccionario que engloba el nivel, las posiciones y las rotaciones de la cámara.
 		Dictionary<string, object> newEvent = new Dictionary<string, object>();
-		newEvent.Add("Level", Globals.actualLevel);
+		newEvent.Add("Level", Globals.actualLevel.ToString());
 		newEvent.Add("Camera_Position", CameraPositions);
 		newEvent.Add("Camera_Rotation", CameraRatations);
 
@@ -73,12 +71,5 @@ public class ScreenShotManager : Singleton<ScreenShotManager>
 		//Finalmente guardamos el resultado en la ruta esperada.
 		string JSONString = JsonConvert.SerializeObject(dict, Formatting.Indented);
 		File.WriteAllText(camerainfoRoute + camerainfoFile, JSONString);
-
-	}
-
-	private void Update()
-	{
-		if (Input.GetKey(KeyCode.Space))
-			TakeScreenShot();
 	}
 }

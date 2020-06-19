@@ -497,6 +497,29 @@
           "clicks": -1,
           "level": 0
         }
+      },
+      "19/06/2020 18:17:59": {
+        "d340e1dbf73c7fa73f83de76c98032059072bc4bc2b3ed0940c72a6f8e5a73ad": {
+          "eventType_": 1,
+          "eventName_": 5,
+          "TimeStamp": "19/06/2020 18:18:12",
+          "clicks": -1,
+          "level": 0
+        },
+        "40cb387f1b3e3fdf26e2a69b946c74cde9295a6bc8e8bd8b1333a50d3ed257b0": {
+          "eventType_": 1,
+          "eventName_": 6,
+          "TimeStamp": "19/06/2020 18:18:16",
+          "clicks": -1,
+          "level": 1
+        },
+        "12588ade673d688f5be6f9f01d4984c5d983e92e0e57132eeef9dbcf7c6ff269": {
+          "eventType_": 1,
+          "eventName_": 0,
+          "TimeStamp": "19/06/2020 18:18:19",
+          "clicks": -1,
+          "level": 1
+        }
       }
     }
   }
