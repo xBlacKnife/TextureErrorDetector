@@ -12,9 +12,17 @@ public class ScreenShotManager : Singleton<ScreenShotManager>
 
 	private void Start()
 	{
-		screenshotRoute = Application.persistentDataPath + "/Screenshots/";
-		camerainfoRoute = Application.persistentDataPath + "/Resources/";
+		screenshotRoute = Application.dataPath + "/Resources/Screenshots/";
+		camerainfoRoute = Application.dataPath + "/Resources/";
 		camerainfoFile = "camerainfo.json";
+	}
+
+	private void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			TakeScreenShot();
+		}
 	}
 
 	public void TakeScreenShot()

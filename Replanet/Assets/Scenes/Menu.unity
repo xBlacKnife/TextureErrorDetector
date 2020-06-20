@@ -920,6 +920,7 @@ GameObject:
   - component: {fileID: 542944691}
   - component: {fileID: 542944690}
   - component: {fileID: 542944692}
+  - component: {fileID: 542944693}
   m_Layer: 0
   m_Name: Tracker
   m_TagString: Untagged
@@ -973,6 +974,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc0429be0ef7d2349ac28412047d82fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &542944693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542944689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ed514a002bf15243971e7a37f59af0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &547524383 stripped
