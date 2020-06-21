@@ -75,8 +75,9 @@ def existe_imagen(nombre_imagen):
 
 def guardar_json(nombre, shape0, shape1, mascara):
     pixeles_marcados = {}
-    pixeles_marcados['pixelesMarcados'] = []
-    pixeles_marcados['Fallo'] = calcular_porcentaje_fallo(mascara)
+    pixeles_marcados[nombre]={}
+    pixeles_marcados[nombre]['Pixeles_Marcados'] = []
+    pixeles_marcados[nombre]['Porcentaje_Fallo'] = calcular_porcentaje_fallo(mascara)
     print(shape0, shape1)
     for i in range(0, shape0):
         for j in range(0, shape1):
@@ -84,7 +85,7 @@ def guardar_json(nombre, shape0, shape1, mascara):
                 coordenadas = {}
                 coordenadas['x'] = i
                 coordenadas['y'] = j
-                pixeles_marcados['pixelesMarcados'].append(coordenadas)
+                pixeles_marcados[nombre]['Pixeles_Marcados'].append(coordenadas)
 
     with open(PATH_COORDENADAS + nombre + EXTENSION_JSON, 'w') as outfile:
         json.dump(pixeles_marcados, outfile, indent=2)
