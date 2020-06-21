@@ -113,7 +113,6 @@ public class MenuPlayerController : MonoBehaviour
             chooseLevel();
         }
     }
-
     public void chooseLevel()
     {
         if(levelToChange != null)
