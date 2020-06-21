@@ -87,9 +87,15 @@ def guardar_json(nombre, shape0, shape1, mascara):
                 coordenadas['y'] = j
                 pixeles_marcados[nombre]['Pixeles_Marcados'].append(coordenadas)
 
-    with open(PATH_COORDENADAS + nombre + EXTENSION_JSON, 'w') as outfile:
-        json.dump(pixeles_marcados, outfile, indent=2)
 
+    with open(PATH_COORDENADAS + 'json' + EXTENSION_JSON) as outfile:
+        data = json.load(outfile)
+
+    data.update(pixeles_marcados)
+
+    
+    with open(PATH_COORDENADAS + 'json' + EXTENSION_JSON, 'w') as outfile:
+        json.dump(data, outfile,indent=2)
 
 '''
     Se utiliza la imagen original y la máscara para pintar encima de la imagen original los píxeles que 
