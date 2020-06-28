@@ -50,7 +50,8 @@ RESULTS_PATH = "/result"
 ###############################################################
 """
 	Dadas unas imágenes se intenta modelar el cambio 
-	percibido en la información estructural de la imagen.
+	percibido en la información estructural de la imagen
+	utilizando el algortitmo SSIM
 
 	Parameters: 
 		imageA (Array) = Primera imagen a comparar.
@@ -61,7 +62,31 @@ RESULTS_PATH = "/result"
 def SSIM(imageA, imageB) :
 	(score, diff) = ssim(imageA, imageB, full=True)
 	diff = (diff * 255).astype("uint8")
-	return diff, score #Devuelve la diferencia entre imágenes tanto en porcentaje como una imagen
+	#Devuelve la diferencia entre imágenes tanto en porcentaje como una imagen
+	return diff, score 
+
+
+"""
+	Dadas las imágenes utiliza el método subtract
+	de la librería CV2 para hacer diferencia de valor
+	de píxeles, si la diferencia es 0 sabemos que el 
+	valor es el mismo y en caso contrario el pixel es diferente
+
+	Parameters:
+		imageA (Array) = Primera imagen a comparar.
+		imageB (Array) = Pegunda imagen a comparar.
+
+	Return value: Devuelve la imagen diferencia y False en caso de no haber diferencia, True en caso contrario
+
+"""
+def comparaCV2(imageA, imageB) :
+	diff = cv2.subtract(imageB, imageA)
+	diff = abs(diff)
+
+	if not np.any(diff) :
+		return diff, False
+	else :
+		return diff, True
 
 
 
@@ -211,22 +236,24 @@ def analize(CapturePath = "", OriginalPath = "") :
 		if not AlreadyAnalized(os.path.basename(file)) : #comprobamos si la imagen ya ha sido analizada
 			#Buscamos la ruta de la imagen original que queremos cargar para comparar
 			org = find(os.path.basename(file), os.getcwd() +'/'+OriginalPath )
+			if org != None : 
+				#Cargamos y convertimos las imagenes
+				original, greyOriginal = load_and_Convert(file)
+				new, greyNew = load_and_Convert(org)
 
-			#Cargamos y convertimos las imagenes
-			original, greyOriginal = load_and_Convert(file)
-			new, greyNew = load_and_Convert(org)
+				#Calculamos la diferencia
+				#diff, score = SSIM(greyOriginal, greyNew)
 
-			#Calculamos la diferencia
-			diff, score = SSIM(greyOriginal, greyNew)
+				diff, score = comparaCV2(greyOriginal, greyNew)
 
-			#mostramos por consola la similitud
-			print("SSIM: {}".format(score))
+				#mostramos por consola la similitud SOLO PARA DEBUG
+				#print("SSIM: {}".format(score))
 
-			#Obtenemos la información para guardar la imagen diferencia y actualizar el JSON
-			h, w= diff.shape
-			imId = create_id()
-			save_in_folder(imId, diff, RESULTS_PATH)
-			export_info_toJSON(imId, w, h, score, os.path.basename(file))
+				#Obtenemos la información para guardar la imagen diferencia y actualizar el JSON
+				h, w= diff.shape
+				imId = create_id()
+				save_in_folder(imId, diff, RESULTS_PATH)
+				export_info_toJSON(imId, w, h, score, os.path.basename(file))
 
 
 
