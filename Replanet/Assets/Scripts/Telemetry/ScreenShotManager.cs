@@ -21,25 +21,38 @@ public class ScreenShotManager : Singleton<ScreenShotManager>
 	{
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-			TakeScreenShot();
+			TakeErrorScreenshot("TestImage" + Time.time.ToString());
 		}
 	}
 
-	public void TakeScreenShot()
+	public void TakeReferenceScreenshot(string screenshotName)
+    {
+		TakeScreenShot(screenshotName);
+    }
+
+	public void TakeErrorScreenshot(string screenshotName)
+    {
+		TakeScreenShot(screenshotName);
+		SaveCameraInfo(screenshotName);
+    }
+
+	private void TakeScreenShot(string SN)
 	{
 		if (!Directory.Exists(screenshotRoute))
 		{
 			Directory.CreateDirectory(screenshotRoute);
 		}
 
-		string screenshotName = "Screenshot_Level_" + Globals.actualLevel.ToString() + "TimeStamp_" +  Time.time.ToString();
+		string screenshotName = "Screenshot_" + SN;
 
 		ScreenCapture.CaptureScreenshot(screenshotRoute + screenshotName + ".jpg");
-		SaveCameraInfo(screenshotName);
 	}
 
 	public void SaveCameraInfo(string screenshotName)
 	{
+
+		screenshotName = "Screenshot_" + screenshotName;
+
 		//Se comprueba si el directorio donde se pretenden guardar los datos existe y si no es así se genera.
 		if (!Directory.Exists(camerainfoRoute))
 		{
@@ -67,11 +80,16 @@ public class ScreenShotManager : Singleton<ScreenShotManager>
 		CameraRatations.Add("Z", Camera.main.transform.rotation.z.ToString());
 		CameraRatations.Add("W", Camera.main.transform.rotation.w.ToString());
 
-		//Un nuevo diccionario que engloba el nivel, las posiciones y las rotaciones de la cámara.
+		//Añade la ruta de la imagen al diccionario.
+		Dictionary<string, object> ImageDirectory = new Dictionary<string, object>();
+		ImageDirectory.Add("Image", screenshotRoute + screenshotName + ".jpg");
+
+		//Un nuevo diccionario que engloba el nivel, las posiciones y las rotaciones de la cámara, así como la ruta en la que se encuentra la imagen
 		Dictionary<string, object> newEvent = new Dictionary<string, object>();
 		newEvent.Add("Level", Globals.actualLevel.ToString());
 		newEvent.Add("Camera_Position", CameraPositions);
 		newEvent.Add("Camera_Rotation", CameraRatations);
+		newEvent.Add("Image_Directory", ImageDirectory);
 
 		//Al diccionario original, añadimos el diccionario anterior dentro de uno nuevo, que será el nombre de la captura.
 		dict.Add(screenshotName, newEvent);

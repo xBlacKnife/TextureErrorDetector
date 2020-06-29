@@ -667,6 +667,126 @@
           "clicks": -1,
           "level": 0
         }
+      },
+      "29/06/2020 18:39:48": {
+        "2c3a21643c3115bbe70976903c9712c8ee09eb70040136ba8ab3ed43b4c16944": {
+          "eventType_": 1,
+          "eventName_": 5,
+          "TimeStamp": "29/06/2020 18:40:02",
+          "clicks": -1,
+          "level": 0
+        },
+        "31378ffbc53c65a819d072c62b3c81f20edd5a5d472179fa76609f738335c383": {
+          "eventType_": 1,
+          "eventName_": 6,
+          "TimeStamp": "29/06/2020 18:40:08",
+          "clicks": -1,
+          "level": 1
+        },
+        "c275bc2ff0250f6b26c63325b47cb520977b12338f798d1c0b3fa7d903f2250b": {
+          "eventType_": 1,
+          "eventName_": 0,
+          "TimeStamp": "29/06/2020 18:40:11",
+          "clicks": -1,
+          "level": 1
+        },
+        "2ef811fed4172ac90ae1374b8078525840a6e22d6c2d9c510b1138f2e61668ec": {
+          "eventType_": 1,
+          "eventName_": 4,
+          "TimeStamp": "29/06/2020 18:40:25",
+          "clicks": -1,
+          "level": 1
+        }
+      },
+      "29/06/2020 18:43:40": {
+        "3ea6677e7301a3a9645741b932606b5434385a9e08293dc03f940a35a1883b40": {
+          "eventType_": 1,
+          "eventName_": 5,
+          "TimeStamp": "29/06/2020 18:43:54",
+          "clicks": -1,
+          "level": 0
+        },
+        "0ab1e225ceb89574440af568d87512acd5e727a0aff73e5aa3d7cfa8a0a5afad": {
+          "eventType_": 1,
+          "eventName_": 6,
+          "TimeStamp": "29/06/2020 18:43:56",
+          "clicks": -1,
+          "level": 1
+        },
+        "88144254a33bfa7d2616485b19e6deabbb16e1ef1d03e17dc0d031ad170ff536": {
+          "eventType_": 1,
+          "eventName_": 0,
+          "TimeStamp": "29/06/2020 18:43:59",
+          "clicks": -1,
+          "level": 1
+        },
+        "0de7011fe1f9f7833984830cc19bfb9699c361c94da4a0c2783874d6f4ce44ba": {
+          "eventType_": 1,
+          "eventName_": 4,
+          "TimeStamp": "29/06/2020 18:44:11",
+          "clicks": -1,
+          "level": 1
+        }
+      },
+      "29/06/2020 18:45:53": {
+        "22488239065ed3fd3cbc32328d74ee641b453d614e8eb60bf5689786dc7926d9": {
+          "eventType_": 1,
+          "eventName_": 5,
+          "TimeStamp": "29/06/2020 18:46:08",
+          "clicks": -1,
+          "level": 0
+        },
+        "b88479a97e5dd2a8294f3e8a874e2678be35c992d2531be5d4c7596e065cac53": {
+          "eventType_": 1,
+          "eventName_": 6,
+          "TimeStamp": "29/06/2020 18:46:09",
+          "clicks": -1,
+          "level": 1
+        },
+        "65247e4f6b040ed8e25c6d631f69839ce3a87c398eaa669ef8e59f5848864be8": {
+          "eventType_": 1,
+          "eventName_": 0,
+          "TimeStamp": "29/06/2020 18:46:13",
+          "clicks": -1,
+          "level": 1
+        },
+        "505addd4029baa64d84ab073069377b4a7f389a5f8bf73d9adbe0fce90fa3d1b": {
+          "eventType_": 1,
+          "eventName_": 4,
+          "TimeStamp": "29/06/2020 18:46:22",
+          "clicks": -1,
+          "level": 1
+        }
+      },
+      "29/06/2020 19:25:42": {
+        "bcab278733fb6d2804454e17ff066bcf8f9f1507f8fecd241d6011e7f68f2054": {
+          "eventType_": 1,
+          "eventName_": 5,
+          "TimeStamp": "29/06/2020 19:25:56",
+          "clicks": -1,
+          "level": 0
+        },
+        "fe67152d4de842a9a9597186a98a9a84e7d02faf88bda46c7c51185b6735943e": {
+          "eventType_": 1,
+          "eventName_": 6,
+          "TimeStamp": "29/06/2020 19:25:58",
+          "clicks": -1,
+          "level": 1
+        },
+        "c085f57495b2ad7e06b5723abf900f3f57274197f2dd8fe41f90115435269c62": {
+          "eventType_": 1,
+          "eventName_": 0,
+          "TimeStamp": "29/06/2020 19:26:01",
+          "clicks": -1,
+          "level": 1
+        },
+        "95abe8354fc49b0fc4ba38797d85c183310de6723ee33f5dbafb28da4261e9ea": {
+          "eventType_": 1,
+          "eventName_": 4,
+          "TimeStamp": "29/06/2020 19:26:13",
+          "clicks": -1,
+          "level": 1
+        }
       }
     }
   }

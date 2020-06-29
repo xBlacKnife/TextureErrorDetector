@@ -1,58 +1,87 @@
 {
-  "Screenshot_Level_1TimeStamp_26,13166": {
+  "Screenshot_TestImage21,44547": {
     "Level": "1",
     "Camera_Position": {
-      "X": "-2,215183",
-      "Y": "7,024294",
-      "Z": "-5,145022"
+      "X": "0,7177555",
+      "Y": "7,024298",
+      "Z": "-2,553166"
     },
     "Camera_Rotation": {
       "X": "0,330366",
       "Y": "0,2432104",
       "Z": "-0,08852133",
       "W": "0,9076734"
+    },
+    "Image_Directory": {
+      "Image": "C:/Users/ruide/Desktop/Clases Universidad/Carrera/Cuarto/Usabilidad y análisis de videojuegos/TextureErrorDetector/Replanet/Assets/Resources/Screenshots/Screenshot_TestImage21,44547.jpg"
     }
   },
-  "Screenshot_Level_1TimeStamp_37,62665": {
+  "Screenshot_TestImage24,46738": {
     "Level": "1",
     "Camera_Position": {
-      "X": "-5,404479",
-      "Y": "7,024302",
-      "Z": "-4,621078"
+      "X": "-4,182582",
+      "Y": "7,024297",
+      "Z": "-4,076204"
     },
     "Camera_Rotation": {
       "X": "0,330366",
       "Y": "0,2432104",
       "Z": "-0,08852133",
       "W": "0,9076734"
+    },
+    "Image_Directory": {
+      "Image": "C:/Users/ruide/Desktop/Clases Universidad/Carrera/Cuarto/Usabilidad y análisis de videojuegos/TextureErrorDetector/Replanet/Assets/Resources/Screenshots/Screenshot_TestImage24,46738.jpg"
     }
   },
-  "Screenshot_Level_2TimeStamp_67,88163": {
-    "Level": "2",
+  "Screenshot_TestImage32,15156": {
+    "Level": "1",
     "Camera_Position": {
-      "X": "-3,227168",
-      "Y": "7,024299",
-      "Z": "-8,70331"
+      "X": "0,05882079",
+      "Y": "7,024297",
+      "Z": "-4,327762"
     },
     "Camera_Rotation": {
       "X": "0,330366",
       "Y": "0,2432104",
       "Z": "-0,08852133",
       "W": "0,9076734"
+    },
+    "Image_Directory": {
+      "Image": "C:/Users/ruide/Desktop/Clases Universidad/Carrera/Cuarto/Usabilidad y análisis de videojuegos/TextureErrorDetector/Replanet/Assets/Resources/Screenshots/Screenshot_TestImage32,15156.jpg"
     }
   },
-  "Screenshot_Level_2TimeStamp_81,07525": {
+  "Screenshot_TestImage51,98478": {
     "Level": "2",
     "Camera_Position": {
-      "X": "7,300457",
-      "Y": "7,02429",
-      "Z": "-6,069983"
+      "X": "2,836079",
+      "Y": "7,024296",
+      "Z": "-4,865537"
     },
     "Camera_Rotation": {
       "X": "0,330366",
       "Y": "0,2432104",
       "Z": "-0,08852133",
       "W": "0,9076734"
+    },
+    "Image_Directory": {
+      "Image": "C:/Users/ruide/Desktop/Clases Universidad/Carrera/Cuarto/Usabilidad y análisis de videojuegos/TextureErrorDetector/Replanet/Assets/Resources/Screenshots/Screenshot_TestImage51,98478.jpg"
+    }
+  },
+  "Screenshot_TestImage55,8214": {
+    "Level": "2",
+    "Camera_Position": {
+      "X": "-3,937267",
+      "Y": "7,0243",
+      "Z": "-8,531436"
+    },
+    "Camera_Rotation": {
+      "X": "0,330366",
+      "Y": "0,2432104",
+      "Z": "-0,08852133",
+      "W": "0,9076734"
+    },
+    "Image_Directory": {
+      "Image": "C:/Users/ruide/Desktop/Clases Universidad/Carrera/Cuarto/Usabilidad y análisis de videojuegos/TextureErrorDetector/Replanet/Assets/Resources/Screenshots/Screenshot_TestImage55,8214.jpg"
     }
   }
 }

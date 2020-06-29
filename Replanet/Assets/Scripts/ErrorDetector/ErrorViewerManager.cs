@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
 using MiniJSON;
+using System;
+using Cinemachine;
+using UnityEngine.UI;
 
 struct CameraPosition
 {
@@ -24,16 +27,87 @@ struct ScreenshotInfo
     public int Level;
     public CameraPosition Position;
     public CameraRotation Rotation;
+    public ImageRoute ImagePath;
 }
-public class ErrorViewer : MonoBehaviour
+
+struct ImageRoute
+{
+    public string route;
+}
+
+public class ErrorViewerManager : Singleton<ErrorViewerManager>
 {
     private string camerainfoRoute;
     private List<ScreenshotInfo> _screenshotinfo_list;
 
     int screenshot_index = 0;
-    bool testing_started = false;
-    // Start is called before the first frame update
-    void Start()
+    [HideInInspector]
+    public bool testing_started = false;
+    [HideInInspector]
+    public bool loading_next_level = false;
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (testing_started)
+        {
+            DisableCinemachine();
+            SetCamera();
+
+            ShowImage();
+
+        }
+    }
+
+    private void ShowImage()
+    {
+        StartCoroutine(GetImage());
+    }
+    IEnumerator GetImage()
+    {
+        string url = _screenshotinfo_list[screenshot_index].ImagePath.route;
+
+        Texture2D tex;
+        tex = new Texture2D(8, 8, TextureFormat.DXT1, false);
+        using (WWW www = new WWW(url))
+        {
+            yield return www;
+            www.LoadImageIntoTexture(tex);
+            ErrorViewerCanvas.Instance.ImageViewer.GetComponent<RawImage>().texture = tex;
+        }
+    }
+
+    public void NextError()
+    {
+        if (CheckValidList() && !loading_next_level)
+        {
+            screenshot_index = (screenshot_index + 1) % _screenshotinfo_list.Count;
+            StartCoroutine(LoadNextError());
+        }
+    }
+
+    public void PrevError()
+    {
+        if (CheckValidList() && !loading_next_level)
+        {
+            screenshot_index--;
+            if (screenshot_index < 0)
+                screenshot_index = _screenshotinfo_list.Count - 1;
+
+            StartCoroutine(LoadNextError());
+        }
+    }
+
+    private bool CheckValidList()
+    {
+        return _screenshotinfo_list != null && _screenshotinfo_list.Count > 0;
+    }
+
+    public void StartTest()
     {
         camerainfoRoute = Application.dataPath + "/Resources/camerainfo.json";
         if (File.Exists(camerainfoRoute))
@@ -43,35 +117,26 @@ public class ErrorViewer : MonoBehaviour
 
             CreateScreenshotList(cameraInfoDict);
         }
+
+        testing_started = true;
+
+        if (CheckValidList() && !loading_next_level)
+            StartCoroutine(LoadNextError());
+    }
+
+    private void DisableCinemachine()
+    {
+        CinemachineBrain CB = FindObjectOfType<Cinemachine.CinemachineBrain>();
+
+        if (CB && CB.GetComponent<Cinemachine.CinemachineBrain>())
+            CB.GetComponent<Cinemachine.CinemachineBrain>().enabled = false;
     }
 
     // Update is called once per frame
-    void Update()
+    private void SetCamera()
     {
-        if (_screenshotinfo_list != null && _screenshotinfo_list.Count > 0)
+        if (CheckValidList())
         {
-            if (Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow)){
-                if (Input.GetKeyDown(KeyCode.T) && !testing_started)
-                {
-                    testing_started = true;                   
-                }
-                else if (Input.GetKeyDown(KeyCode.LeftArrow) && testing_started)
-                {
-                    screenshot_index--;
-                    if (screenshot_index < 0)
-                        screenshot_index = _screenshotinfo_list.Count - 1;
-                }
-                else if (Input.GetKeyDown(KeyCode.RightArrow) && testing_started)
-                {
-                    screenshot_index = (screenshot_index + 1) % _screenshotinfo_list.Count;
-                }
-                SceneManager.LoadScene("Level" + _screenshotinfo_list[screenshot_index].Level);
-            }
-        }
-        if (testing_started)
-        {
-            FindObjectOfType<Cinemachine.CinemachineBrain>().GetComponent<Cinemachine.CinemachineBrain>().enabled = false;
-
             Camera.main.transform.position = new Vector3(_screenshotinfo_list[screenshot_index].Position.X,
                 _screenshotinfo_list[screenshot_index].Position.Y,
                 _screenshotinfo_list[screenshot_index].Position.Z);
@@ -82,6 +147,19 @@ public class ErrorViewer : MonoBehaviour
                 _screenshotinfo_list[screenshot_index].Rotation.W);
         }
     }
+
+    IEnumerator LoadNextError()
+    {
+        loading_next_level = true;
+
+        AsyncOperation load = SceneManager.LoadSceneAsync("Level" + _screenshotinfo_list[screenshot_index].Level);
+
+        while (!load.isDone)
+            yield return null;
+
+        loading_next_level = false;
+    }
+
 
     private void CreateScreenshotList(Dictionary<string, object> cameraInfoDict)
     {
@@ -131,6 +209,19 @@ public class ErrorViewer : MonoBehaviour
                     Y = float.Parse(y.ToString()),
                     Z = float.Parse(z.ToString()),
                     W = float.Parse(w.ToString())
+                };
+            }
+
+            object image_route;
+            if ((info.Value as Dictionary<string, object>).TryGetValue("Image_Directory", out image_route))
+            {
+                object directory;
+
+                (image_route as Dictionary<string, object>).TryGetValue("Image", out directory);
+
+                new_screenshot.ImagePath = new ImageRoute()
+                {
+                    route = directory.ToString()
                 };
             }
 
