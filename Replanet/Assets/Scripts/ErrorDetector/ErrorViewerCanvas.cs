@@ -14,7 +14,6 @@ public class ErrorViewerCanvas : Singleton<ErrorViewerCanvas>
 
     public GameObject [] LeftRightButtons;
     public GameObject StartButton, ImageViewer;
-
     public void StartTest()
     {
         foreach(GameObject g in LeftRightButtons)

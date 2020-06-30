@@ -22,8 +22,6 @@ PATH_PATRONES = "./Patrones/"
 # Path donde se guardan los archivos marcados con los errores
 PATH_MARCADAS = "./Marcadas/"
 
-# Path donde se guardan los archivos que guardan la información de las coordenadas con pixeles detectados como error
-PATH_COORDENADAS = "./Jsons/"
 # Extensión de los patrones
 EXTENSION_PATRON = ".jpg"
 
@@ -87,15 +85,17 @@ def guardar_json(nombre, shape0, shape1, mascara):
                 coordenadas['y'] = j
                 pixeles_marcados[nombre]['Pixeles_Marcados'].append(coordenadas)
 
+    if not os.path.exists('texture_error' + EXTENSION_JSON):
+        with open('texture_error' + EXTENSION_JSON, 'w') as outfile:
+            json.dump({}, outfile, indent=2)
 
-    with open(PATH_COORDENADAS + 'json' + EXTENSION_JSON) as outfile:
+    with open('texture_error' + EXTENSION_JSON) as outfile:
         data = json.load(outfile)
 
     data.update(pixeles_marcados)
-
     
-    with open(PATH_COORDENADAS + 'json' + EXTENSION_JSON, 'w') as outfile:
-        json.dump(data, outfile,indent=2)
+    with open('texture_error' + EXTENSION_JSON, 'w') as outfile:
+        json.dump(data, outfile, indent=2)
 
 '''
     Se utiliza la imagen original y la máscara para pintar encima de la imagen original los píxeles que 
@@ -192,7 +192,7 @@ def crea_mascara(nombre_imagen):
                      nombre_sin_extension + extension_archivo)
 
     # Se lee el nombre del patron que se quiere utilizar, en función del argumento de entrada
-    nombre_patron = sys.argv[2]
+    nombre_patron = sys.argv[1]
 
     imagen_roja = Image.open(PATH_PATRONES + nombre_patron + EXTENSION_PATRON)
 
@@ -227,17 +227,19 @@ def crea_mascara(nombre_imagen):
 
 
 def main():
-    # Nombre del archivo que se quiere procesar
-    nombre_imagen = sys.argv[1]
 
-    # Si existe el archivo se crea la máscara
-    if(existe_imagen(nombre_imagen)):
-        crea_mascara(nombre_imagen)
+    imag_list = os.listdir(PATH_ORIGINALES)
+    print(imag_list)
 
-    # En caso contrario salta un error
-    else:   
-        raise FileNotFoundError(
-            "No se ha encontrado el archivo " + nombre_imagen + " en la carpeta " + 'Originales')
+    for nombre_imagen in imag_list:
+        # Si existe el archivo se crea la máscara
+        if(existe_imagen(nombre_imagen)):
+            crea_mascara(nombre_imagen)
+
+        # En caso contrario salta un error
+        else:   
+            raise FileNotFoundError(
+                "No se ha encontrado el archivo " + nombre_imagen + " en la carpeta " + 'Originales')
 
 
 if __name__ == "__main__":
