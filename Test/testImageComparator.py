@@ -18,7 +18,7 @@
 #IMPORTS 
 import PIL
 from PIL import Image
-from skimage.metrics import structural_similarity as ssim
+from skimage import measure
 import matplotlib.pyplot as plt
 import numpy as np
 import argparse
@@ -60,7 +60,7 @@ RESULTS_PATH = "/result"
 	Return Value: Devuelve la diferencia entre imágenes tanto en porcentaje como una imagen.
 """
 def SSIM(imageA, imageB) :
-	(score, diff) = ssim(imageA, imageB, full=True)
+	(score, diff) = measure.compare_ssim(imageA, imageB)
 	diff = (diff * 255).astype("uint8")
 	#Devuelve la diferencia entre imágenes tanto en porcentaje como una imagen
 	return diff, score 

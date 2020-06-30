@@ -76,7 +76,6 @@ def guardar_json(nombre, shape0, shape1, mascara):
     pixeles_marcados[nombre]={}
     pixeles_marcados[nombre]['Pixeles_Marcados'] = []
     pixeles_marcados[nombre]['Porcentaje_Fallo'] = calcular_porcentaje_fallo(mascara)
-    print(shape0, shape1)
     for i in range(0, shape0):
         for j in range(0, shape1):
             if(mascara[i][j]):
@@ -111,7 +110,6 @@ def guardar_json(nombre, shape0, shape1, mascara):
 def marcar_coloreando_encima(img, mascara):
     for i in range(0, img.shape[0]):
         for j in range(0, img.shape[1]):
-            print(mascara[i][j])
             if(mascara[i][j]):
                 img[i][j] = COLORBGR_SOBREPINTADO
 
@@ -229,7 +227,6 @@ def crea_mascara(nombre_imagen):
 def main():
 
     imag_list = os.listdir(PATH_ORIGINALES)
-    print(imag_list)
 
     for nombre_imagen in imag_list:
         # Si existe el archivo se crea la máscara

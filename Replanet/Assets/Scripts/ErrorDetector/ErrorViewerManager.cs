@@ -41,7 +41,6 @@ struct ImageRoute
 {
     public string route;
 }
-
 public class ErrorViewerManager : Singleton<ErrorViewerManager>
 {
     public GameObject ErrorCircle;
@@ -67,6 +66,8 @@ public class ErrorViewerManager : Singleton<ErrorViewerManager>
         {
             DisableCinemachine();
             SetCamera();
+
+            SetErrorCircle();
 
             ShowImage();
 
@@ -159,6 +160,14 @@ public class ErrorViewerManager : Singleton<ErrorViewerManager>
                 _screenshotinfo_list[screenshot_index].Rotation.Y,
                 _screenshotinfo_list[screenshot_index].Rotation.Z,
                 _screenshotinfo_list[screenshot_index].Rotation.W);
+        }
+    }
+
+    private void SetErrorCircle()
+    {
+        if (CheckValidList())
+        {
+
         }
     }
 
