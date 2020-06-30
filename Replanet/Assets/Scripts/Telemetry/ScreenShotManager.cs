@@ -10,12 +10,33 @@ public class ScreenShotManager : Singleton<ScreenShotManager>
 	private string screenshotRoute;
 	private string camerainfoRoute;
 	private string camerainfoFile;
+	private string referenceRoute;
+	private string compareRoute;
 
-	private void Start()
+	[HideInInspector]
+	public bool originalPhotoCompareMode = false;
+
+    private void Awake()
+    {
+		if (FindObjectsOfType<ScreenShotManager>().Length > 1)
+			Destroy(this.gameObject);
+	}
+
+    private void Start()
 	{
 		screenshotRoute = Application.dataPath + "../../../Error Detector/Originales/";
 		camerainfoRoute = Application.dataPath + "../../../Error Detector/";
+		referenceRoute = Application.dataPath + "../../../ImageCompare/images/Original/";
+		compareRoute = Application.dataPath + "../../../ImageCompare/images/Captures/";
+
 		camerainfoFile = "camerainfo.json";
+	}
+
+	public void TakeCompareImages(string screenshotName)
+    {
+		if(originalPhotoCompareMode)
+			TakeScreenShot(screenshotName, referenceRoute);
+		else TakeScreenShot(screenshotName, compareRoute);
 	}
 
 	private void Update()
@@ -26,18 +47,14 @@ public class ScreenShotManager : Singleton<ScreenShotManager>
 		}
 	}
 
-	public void TakeReferenceScreenshot(string screenshotName)
-    {
-		TakeScreenShot(screenshotName);
-    }
 
 	public void TakeErrorScreenshot(string screenshotName)
     {
-		TakeScreenShot(screenshotName);
+		TakeScreenShot(screenshotName, screenshotRoute);
 		SaveCameraInfo(screenshotName);
     }
 
-	private void TakeScreenShot(string SN)
+	private void TakeScreenShot(string SN, string route)
 	{
 		if (!Directory.Exists(screenshotRoute))
 		{
@@ -46,7 +63,7 @@ public class ScreenShotManager : Singleton<ScreenShotManager>
 
 		string screenshotName = "Screenshot_" + SN;
 
-		ScreenCapture.CaptureScreenshot(screenshotRoute + screenshotName + ".jpg");
+		ScreenCapture.CaptureScreenshot(route + screenshotName + ".jpg");
 	}
 
 	public void SaveCameraInfo(string screenshotName)

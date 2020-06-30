@@ -55,6 +55,8 @@ public class ErrorViewerManager : Singleton<ErrorViewerManager>
     [HideInInspector]
     public bool loading_next_level = false;
 
+    private int numImages = 0;
+
     void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -62,6 +64,7 @@ public class ErrorViewerManager : Singleton<ErrorViewerManager>
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+       
         if (testing_started)
         {
             DisableCinemachine();
@@ -70,8 +73,14 @@ public class ErrorViewerManager : Singleton<ErrorViewerManager>
             SetErrorCircle();
 
             ShowImage();
-
         }
+    }
+
+
+    public void TakeNextCompareImage()
+    {
+        ScreenShotManager.Instance.TakeCompareImages(numImages.ToString());
+        numImages++;
     }
 
     private void ShowImage()
@@ -274,8 +283,8 @@ public class ErrorViewerManager : Singleton<ErrorViewerManager>
                         (marked as Dictionary<string, object>).TryGetValue("x", out x);
                         (marked as Dictionary<string, object>).TryGetValue("y", out y);
 
-                        Debug.Log(x.ToString());
-                        Debug.Log(y.ToString());
+                       // Debug.Log(x.ToString());
+                       // Debug.Log(y.ToString());
                     }
 
                     _screenshotinfo_list.Add(new_screenshot);

@@ -163,14 +163,14 @@ def create_id() :
 		imageName (string): Nombre de la imagen.
 """
 def export_info_toJSON(id, xSize, ySize, failure, imageName) :
-	if(not os.path.exists(os.getcwd()+"/Log.json")) :
+	if(not os.path.exists(os.getcwd()+"/CompareLog.json")) :
 		data = {}
 		data['Results'] = []
-		with open('Log.json', 'w') as outfile :
+		with open('CompareLog.json', 'w') as outfile :
 			json.dump(data, outfile)
 			outfile.close()
 
-	with open('Log.json') as json_file :
+	with open('CompareLog.json') as json_file :
 		data = json.load(json_file)
 		data['Results'].append({
 			'id' : id,
@@ -180,7 +180,7 @@ def export_info_toJSON(id, xSize, ySize, failure, imageName) :
 			'failure' : failure 
 		})
 
-	with open('Log.json', 'w') as outfile :
+	with open('CompareLog.json', 'w') as outfile :
 		json.dump(data, outfile)
 
 
@@ -210,8 +210,8 @@ def find(name, path):
 """
 
 def AlreadyAnalized(name) :
-	if(os.path.exists(os.getcwd()+"/Log.json")) :
-		with open('Log.json') as json_file :
+	if(os.path.exists(os.getcwd()+"/CompareLog.json")) :
+		with open('CompareLog.json') as json_file :
 			data = json.load(json_file)
 			for i in data['Results'] :
 				if i["Image"] == name :
@@ -241,16 +241,28 @@ def analize(CapturePath = "", OriginalPath = "") :
 				original, greyOriginal = load_and_Convert(file)
 				new, greyNew = load_and_Convert(org)
 
-				#Calculamos la diferencia
+				#Si no coinciden las resoluciones hay que escalarlo para que el programa no falle
+				if(greyNew.shape != greyOriginal.shape) :
+					dim = (greyOriginal.shape[1], greyOriginal.shape[0])
+					new = cv2.resize(greyNew, dim, interpolation = cv2.INTER_AREA)
+					greyNew = cv2.resize(greyNew, dim, interpolation = cv2.INTER_AREA)
+
+				#VARIAS FORMAS PARA PROBAR LA COMPARACIÓN DE IMÁGENES
+				#----------------------------------------------------
+
+				#Calculamos la diferencia con el método SSIM
 				#diff, score = SSIM(greyOriginal, greyNew)
 
+				#Calculamos la diferencia con el método de CV2
 				diff, score = comparaCV2(greyOriginal, greyNew)
+
+				#----------------------------------------------------
 
 				#mostramos por consola la similitud SOLO PARA DEBUG
 				#print("SSIM: {}".format(score))
 
 				#Obtenemos la información para guardar la imagen diferencia y actualizar el JSON
-				h, w= diff.shape
+				h, w= greyNew.shape
 				imId = create_id()
 				save_in_folder(imId, diff, RESULTS_PATH)
 				export_info_toJSON(imId, w, h, score, os.path.basename(file))

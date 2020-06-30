@@ -10,10 +10,14 @@ public class ErrorViewerCanvas : Singleton<ErrorViewerCanvas>
 #if !UNITY_EDITOR //para que solo funcione en modo debug
          gameObject.SetActive(false);
 #endif
+
+        if (FindObjectsOfType<ErrorViewerCanvas>().Length > 1)
+            Destroy(this.gameObject);
+
     }
 
     public GameObject [] LeftRightButtons;
-    public GameObject StartButton, ImageViewer;
+    public GameObject StartButton, ImageViewer, CompareButton;
     public void StartTest()
     {
         foreach(GameObject g in LeftRightButtons)
@@ -26,6 +30,12 @@ public class ErrorViewerCanvas : Singleton<ErrorViewerCanvas>
             ImageViewer.SetActive(true);
 
         ErrorViewerManager.Instance.StartTest();
+    }
+
+    public void EnableCompareModeTest()
+    {
+        CompareButton.SetActive(false);
+        ScreenShotManager.Instance.originalPhotoCompareMode = true;
     }
 
     public void NextError()

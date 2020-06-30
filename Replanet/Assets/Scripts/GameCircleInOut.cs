@@ -31,6 +31,11 @@ public class GameCircleInOut : MonoBehaviour
 
     IEnumerator circleOut()
     {
+        PlayerMovement PM = FindObjectOfType<PlayerMovement>();
+
+        if (PM)
+            PM.enabled = false;
+
         yield return new WaitForSeconds(1f);
 
         while (transform.localScale.x < scaleLimit)
@@ -44,7 +49,14 @@ public class GameCircleInOut : MonoBehaviour
         if(vcam != null)
             vcam.enabled = true;
 
-        yield return new WaitForEndOfFrame();        
+        yield return new WaitForEndOfFrame();
+
+        ErrorViewerManager.Instance.TakeNextCompareImage();
+
+        yield return new WaitForEndOfFrame();
+
+        if (PM)
+            PM.enabled = true;
     }
 
     IEnumerator circleIn()
