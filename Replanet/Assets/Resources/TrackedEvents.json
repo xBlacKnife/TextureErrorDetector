@@ -787,6 +787,96 @@
           "clicks": -1,
           "level": 1
         }
+      },
+      "30/06/2020 13:53:38": {
+        "908014fe4634349f013c512f48c85aa4636303eedd5662f3681c2fbb4af84d3a": {
+          "eventType_": 1,
+          "eventName_": 5,
+          "TimeStamp": "30/06/2020 13:53:54",
+          "clicks": -1,
+          "level": 0
+        },
+        "2c70609447812c0e8363fa6afe9b724591c9b44a9b28b8678ebc4c09efe75ec4": {
+          "eventType_": 1,
+          "eventName_": 6,
+          "TimeStamp": "30/06/2020 13:53:56",
+          "clicks": -1,
+          "level": 1
+        },
+        "edafac6d76c4a2c533cbb976d8e205e2ef1b21bef2eceff283e98f0d9ea5a0d7": {
+          "eventType_": 1,
+          "eventName_": 0,
+          "TimeStamp": "30/06/2020 13:53:59",
+          "clicks": -1,
+          "level": 1
+        },
+        "6577dab30c2adc3ef994d533beeb193346163ecd10076a4a33e2da3f545534bb": {
+          "eventType_": 1,
+          "eventName_": 4,
+          "TimeStamp": "30/06/2020 13:54:11",
+          "clicks": -1,
+          "level": 1
+        }
+      },
+      "30/06/2020 14:17:04": {
+        "cbcc739d2436a7d33db97888e15dcc1f0c0a2316367ddd4fedb0de6b621d82d5": {
+          "eventType_": 1,
+          "eventName_": 5,
+          "TimeStamp": "30/06/2020 14:17:19",
+          "clicks": -1,
+          "level": 0
+        },
+        "934d6db1a70edb7014e0432ed3e59bf1c1a4319700a3fe8f2ef9eea49b0702ca": {
+          "eventType_": 1,
+          "eventName_": 6,
+          "TimeStamp": "30/06/2020 14:17:21",
+          "clicks": -1,
+          "level": 1
+        },
+        "d31d6a911d41f39595888289efec3325a1e9dfcc71f590ac51fc73f60eae43d9": {
+          "eventType_": 1,
+          "eventName_": 0,
+          "TimeStamp": "30/06/2020 14:17:24",
+          "clicks": -1,
+          "level": 1
+        },
+        "9500ad402824727e4e98ec9a1c22f0d0a69d6a79a1e47ab28c5b1d0fda20b8af": {
+          "eventType_": 1,
+          "eventName_": 4,
+          "TimeStamp": "30/06/2020 14:17:34",
+          "clicks": -1,
+          "level": 1
+        }
+      },
+      "30/06/2020 14:19:14": {
+        "27651d89eb8cf6cd2aad931e715396e76793a81667ddd17373a28c21c51e3888": {
+          "eventType_": 1,
+          "eventName_": 5,
+          "TimeStamp": "30/06/2020 14:19:29",
+          "clicks": -1,
+          "level": 0
+        },
+        "d38ac9d3e8b02bc620738b438fa8a7d2b8af34c86b960c5c6e1f2fd8c3e7a66a": {
+          "eventType_": 1,
+          "eventName_": 6,
+          "TimeStamp": "30/06/2020 14:19:32",
+          "clicks": -1,
+          "level": 1
+        },
+        "ec991c591b55f4a042efec80208d96b204ba9bf17f7010924dac1c5b738425c8": {
+          "eventType_": 1,
+          "eventName_": 0,
+          "TimeStamp": "30/06/2020 14:19:35",
+          "clicks": -1,
+          "level": 1
+        },
+        "056c82f281420973a3d9136fc6d1ff303d337e652216ba52a23f06ae783ceada": {
+          "eventType_": 1,
+          "eventName_": 4,
+          "TimeStamp": "30/06/2020 14:19:46",
+          "clicks": -1,
+          "level": 1
+        }
       }
     }
   }
