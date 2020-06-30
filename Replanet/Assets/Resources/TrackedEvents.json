@@ -787,6 +787,15 @@
           "clicks": -1,
           "level": 1
         }
+      },
+      "30/06/2020 17:26:30": {
+        "edcfed4ca713ffa9305fcf85a97c35fa8aeab7c8516ca220ed081bbb179dce61": {
+          "eventType_": 1,
+          "eventName_": 0,
+          "TimeStamp": "30/06/2020 17:27:31",
+          "clicks": -1,
+          "level": 0
+        }
       }
     }
   }
