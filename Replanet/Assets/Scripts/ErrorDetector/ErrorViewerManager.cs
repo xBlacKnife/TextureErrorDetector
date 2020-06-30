@@ -65,9 +65,7 @@ public class ErrorViewerManager : Singleton<ErrorViewerManager>
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        ScreenShotManager.Instance.TakeCompareImages(numImages.ToString());
-        numImages++;
-
+       
         if (testing_started)
         {
             DisableCinemachine();
@@ -75,6 +73,13 @@ public class ErrorViewerManager : Singleton<ErrorViewerManager>
 
             ShowImage();
         }
+    }
+
+
+    public void TakeNextCompareImage()
+    {
+        ScreenShotManager.Instance.TakeCompareImages(numImages.ToString());
+        numImages++;
     }
 
     private void ShowImage()

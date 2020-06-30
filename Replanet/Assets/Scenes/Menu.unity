@@ -980,8 +980,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.000017166, y: -169}
-  m_SizeDelta: {x: 135.66489, y: 25.437164}
+  m_AnchoredPosition: {x: 0.000017166, y: -173.83}
+  m_SizeDelta: {x: 135.66489, y: 35.106342}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &429578134
 MonoBehaviour:
@@ -2718,7 +2718,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Compare Test
+  m_Text: Desired Compare Test
 --- !u!222 &1277783711
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3184,6 +3184,7 @@ MonoBehaviour:
   - {fileID: 1352734660}
   StartButton: {fileID: 1624524766}
   ImageViewer: {fileID: 688421482}
+  CompareButton: {fileID: 429578132}
 --- !u!114 &1782901995
 MonoBehaviour:
   m_ObjectHideFlags: 0

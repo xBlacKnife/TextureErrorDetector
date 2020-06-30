@@ -17,7 +17,7 @@ public class ErrorViewerCanvas : Singleton<ErrorViewerCanvas>
     }
 
     public GameObject [] LeftRightButtons;
-    public GameObject StartButton, ImageViewer;
+    public GameObject StartButton, ImageViewer, CompareButton;
     public void StartTest()
     {
         foreach(GameObject g in LeftRightButtons)
@@ -34,6 +34,7 @@ public class ErrorViewerCanvas : Singleton<ErrorViewerCanvas>
 
     public void EnableCompareModeTest()
     {
+        CompareButton.SetActive(false);
         ScreenShotManager.Instance.originalPhotoCompareMode = true;
     }
 
