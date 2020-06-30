@@ -99,6 +99,7 @@ def comparaCV2(imageA, imageB) :
 	Return Value: Devuelve la imagen original y en escala de grises.
 """
 def load_and_Convert(path) : 
+	
 	image = cv2.imread(path)
 	greyImage = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 	return image, greyImage
@@ -127,7 +128,8 @@ def show_image(title, image) :
 """
 #
 def save_in_folder(imageName, im, resultpath) :
-	path = os.getcwd() + resultpath
+	path = "./" + resultpath
+
 	if(not os.path.isdir(path)) :
 		try:
 			os.mkdir(path)
@@ -137,7 +139,7 @@ def save_in_folder(imageName, im, resultpath) :
 		else :
 			print ("%s created" % path)
 
-	cv2.imwrite(path+ "/" + imageName + ".jpg", im)
+	p = cv2.imwrite(path + "/" + imageName + ".jpg", im)
 	
 
 
@@ -235,7 +237,7 @@ def analize(CapturePath = "", OriginalPath = "") :
 	for file in glob.glob(CapturePath + "*.png") :
 		if not AlreadyAnalized(os.path.basename(file)) : #comprobamos si la imagen ya ha sido analizada
 			#Buscamos la ruta de la imagen original que queremos cargar para comparar
-			org = find(os.path.basename(file), os.getcwd() +'/'+OriginalPath )
+			org = find(os.path.basename(file), './'+ OriginalPath )
 			if org != None : 
 				#Cargamos y convertimos las imagenes
 				original, greyOriginal = load_and_Convert(file)
