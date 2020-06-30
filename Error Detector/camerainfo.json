@@ -1,0 +1,104 @@
+{
+  "Screenshot_TestImage21,74815": {
+    "Scene": "Level0",
+    "Camera_Position": {
+      "X": "-1,456959",
+      "Y": "7,024298",
+      "Z": "-4,468105"
+    },
+    "Camera_Rotation": {
+      "X": "0,330366",
+      "Y": "0,2432104",
+      "Z": "-0,08852133",
+      "W": "0,9076734"
+    },
+    "Image_Directory": {
+      "Image": "C:/Users/avr-9/Desktop/Desarrollo de Videojuegos/Usabilidad y Análisis de Juegos/Prácticas/Proyecto/TextureErrorDetector/Replanet/Assets../../../Error Detector/Originales/Screenshot_TestImage21,74815.jpg"
+    }
+  },
+  "Screenshot_TestImage24,00622": {
+    "Scene": "Level0",
+    "Camera_Position": {
+      "X": "-0,1107248",
+      "Y": "7,024297",
+      "Z": "-1,198066"
+    },
+    "Camera_Rotation": {
+      "X": "0,330366",
+      "Y": "0,2432104",
+      "Z": "-0,08852133",
+      "W": "0,9076734"
+    },
+    "Image_Directory": {
+      "Image": "C:/Users/avr-9/Desktop/Desarrollo de Videojuegos/Usabilidad y Análisis de Juegos/Prácticas/Proyecto/TextureErrorDetector/Replanet/Assets../../../Error Detector/Originales/Screenshot_TestImage24,00622.jpg"
+    }
+  },
+  "Screenshot_TestImage32,27641": {
+    "Scene": "Level0",
+    "Camera_Position": {
+      "X": "-4,018301",
+      "Y": "7,024293",
+      "Z": "-5,58809"
+    },
+    "Camera_Rotation": {
+      "X": "0,330366",
+      "Y": "0,2432104",
+      "Z": "-0,08852133",
+      "W": "0,9076734"
+    },
+    "Image_Directory": {
+      "Image": "C:/Users/avr-9/Desktop/Desarrollo de Videojuegos/Usabilidad y Análisis de Juegos/Prácticas/Proyecto/TextureErrorDetector/Replanet/Assets../../../Error Detector/Originales/Screenshot_TestImage32,27641.jpg"
+    }
+  },
+  "Screenshot_TestImage51,26428": {
+    "Scene": "Level1",
+    "Camera_Position": {
+      "X": "-1,977677",
+      "Y": "7,024293",
+      "Z": "-5,233651"
+    },
+    "Camera_Rotation": {
+      "X": "0,330366",
+      "Y": "0,2432104",
+      "Z": "-0,08852133",
+      "W": "0,9076734"
+    },
+    "Image_Directory": {
+      "Image": "C:/Users/avr-9/Desktop/Desarrollo de Videojuegos/Usabilidad y Análisis de Juegos/Prácticas/Proyecto/TextureErrorDetector/Replanet/Assets../../../Error Detector/Originales/Screenshot_TestImage51,26428.jpg"
+    }
+  },
+  "Screenshot_TestImage55,3648": {
+    "Scene": "Level1",
+    "Camera_Position": {
+      "X": "3,562475",
+      "Y": "7,024297",
+      "Z": "-3,303038"
+    },
+    "Camera_Rotation": {
+      "X": "0,330366",
+      "Y": "0,2432104",
+      "Z": "-0,08852133",
+      "W": "0,9076734"
+    },
+    "Image_Directory": {
+      "Image": "C:/Users/avr-9/Desktop/Desarrollo de Videojuegos/Usabilidad y Análisis de Juegos/Prácticas/Proyecto/TextureErrorDetector/Replanet/Assets../../../Error Detector/Originales/Screenshot_TestImage55,3648.jpg"
+    }
+  },
+  "Screenshot_TestImage57,84655": {
+    "Scene": "Level1",
+    "Camera_Position": {
+      "X": "1,394339",
+      "Y": "7,024295",
+      "Z": "-7,068265"
+    },
+    "Camera_Rotation": {
+      "X": "0,330366",
+      "Y": "0,2432104",
+      "Z": "-0,08852133",
+      "W": "0,9076734"
+    },
+    "Image_Directory": {
+      "Image": "C:/Users/avr-9/Desktop/Desarrollo de Videojuegos/Usabilidad y Análisis de Juegos/Prácticas/Proyecto/TextureErrorDetector/Replanet/Assets../../../Error Detector/Originales/Screenshot_TestImage57,84655.jpg"
+    }
+  }
+}

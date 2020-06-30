@@ -3,6 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using MiniJSON;
 using Newtonsoft.Json;
+using UnityEngine.SceneManagement;
 
 public class ScreenShotManager : Singleton<ScreenShotManager>
 {
@@ -12,8 +13,8 @@ public class ScreenShotManager : Singleton<ScreenShotManager>
 
 	private void Start()
 	{
-		screenshotRoute = Application.dataPath + "/Resources/Screenshots/";
-		camerainfoRoute = Application.dataPath + "/Resources/";
+		screenshotRoute = Application.dataPath + "../../../Error Detector/Originales/";
+		camerainfoRoute = Application.dataPath + "../../../Error Detector/";
 		camerainfoFile = "camerainfo.json";
 	}
 
@@ -86,7 +87,7 @@ public class ScreenShotManager : Singleton<ScreenShotManager>
 
 		//Un nuevo diccionario que engloba el nivel, las posiciones y las rotaciones de la cámara, así como la ruta en la que se encuentra la imagen
 		Dictionary<string, object> newEvent = new Dictionary<string, object>();
-		newEvent.Add("Level", Globals.actualLevel.ToString());
+		newEvent.Add("Scene", SceneManager.GetActiveScene().name);
 		newEvent.Add("Camera_Position", CameraPositions);
 		newEvent.Add("Camera_Rotation", CameraRatations);
 		newEvent.Add("Image_Directory", ImageDirectory);

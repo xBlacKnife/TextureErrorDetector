@@ -355,6 +355,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1094439806175234929, guid: d2213025af4675d4e95f74f6bbe62634,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b98301d5fbd4e5a458a931da9883f2fb, type: 2}
     - target: {fileID: 8244848263181285348, guid: d2213025af4675d4e95f74f6bbe62634,
         type: 3}
       propertyPath: m_Name
@@ -8015,6 +8020,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: wall_corner
       objectReference: {fileID: 0}
+    - target: {fileID: 7330472326343018102, guid: 5160271971771e241a32d1fe60354141,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b98301d5fbd4e5a458a931da9883f2fb, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5160271971771e241a32d1fe60354141, type: 3}
 --- !u!1 &1201751401
