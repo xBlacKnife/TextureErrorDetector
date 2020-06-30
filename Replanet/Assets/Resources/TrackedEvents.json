@@ -254,6 +254,36 @@
           "clicks": -1,
           "level": 1
         }
+      },
+      "30/06/2020 19:11:51": {
+        "a242e57b48de644419a66568ca0c396ddd67a84b58df8303103e14db1153667a": {
+          "eventType_": 1,
+          "eventName_": 5,
+          "TimeStamp": "30/06/2020 19:12:07",
+          "clicks": -1,
+          "level": 0
+        },
+        "3e61f9747439c1f0f5c597207cabbb029d515dec9325ff6e5364a6b331b7d063": {
+          "eventType_": 1,
+          "eventName_": 6,
+          "TimeStamp": "30/06/2020 19:12:09",
+          "clicks": -1,
+          "level": 1
+        },
+        "e99b5492af280ac900e200d80e6cb86bd3134735156d300ce49deb1042c2ced5": {
+          "eventType_": 1,
+          "eventName_": 0,
+          "TimeStamp": "30/06/2020 19:12:12",
+          "clicks": -1,
+          "level": 1
+        },
+        "0c9cd1fa06c8445c22285636363896afe1ae392c4f74c5b32b8e230a6d757ed3": {
+          "eventType_": 1,
+          "eventName_": 4,
+          "TimeStamp": "30/06/2020 19:12:24",
+          "clicks": -1,
+          "level": 1
+        }
       }
     }
   }

@@ -6,6 +6,8 @@ import os
 from PIL import Image, ImageOps
 import sys
 import json
+from scipy import ndimage
+from scipy.ndimage.measurements import center_of_mass
 
 ##########################################################################
 ##                                                                      ##
@@ -74,15 +76,18 @@ def existe_imagen(nombre_imagen):
 def guardar_json(nombre, shape0, shape1, mascara):
     pixeles_marcados = {}
     pixeles_marcados[nombre]={}
-    pixeles_marcados[nombre]['Pixeles_Marcados'] = []
     pixeles_marcados[nombre]['Porcentaje_Fallo'] = calcular_porcentaje_fallo(mascara)
-    for i in range(0, shape0):
-        for j in range(0, shape1):
-            if(mascara[i][j]):
-                coordenadas = {}
-                coordenadas['x'] = i
-                coordenadas['y'] = j
-                pixeles_marcados[nombre]['Pixeles_Marcados'].append(coordenadas)
+
+    num_of_objects, objects_pos = object_quantification(PATH_MARCADAS + nombre +
+                "_mascara" + EXTENSION_PATRON)
+    pixeles_marcados[nombre]['Numero_Objetos'] = num_of_objects
+    pixeles_marcados[nombre]['Posicion_Objetos'] = []
+    for pos in objects_pos:
+        coordenadas = {}
+        coordenadas['x'] = int(pos[0])
+        coordenadas['y'] = int(pos[1])
+        pixeles_marcados[nombre]['Posicion_Objetos'].append(coordenadas)
+
 
     if not os.path.exists('texture_error' + EXTENSION_JSON):
         with open('texture_error' + EXTENSION_JSON, 'w') as outfile:
@@ -96,6 +101,28 @@ def guardar_json(nombre, shape0, shape1, mascara):
     with open('texture_error' + EXTENSION_JSON, 'w') as outfile:
         json.dump(data, outfile, indent=2)
 
+
+def object_quantification(image_name):
+    # read image into numpy array
+    image = Image.open(image_name)
+    # convert image to numpy array
+    data = np.asarray(image)
+
+    # smooth the image (to remove small objects); set the threshold
+    dnaf = ndimage.gaussian_filter(data, 16)
+    T = 25 # set threshold by hand to avoid installing `mahotas` or
+        # `scipy.stsci.image` dependencies that have threshold() functions
+
+    # find connected components
+    labeled, nr_objects = ndimage.label(dnaf > T) # `dna[:,:,0]>T` for red-dot case
+
+    centers = center_of_mass(labeled, labels=labeled, index=range(1, nr_objects+1))
+
+    print(centers)
+
+    return nr_objects, centers
+
+
 '''
     Se utiliza la imagen original y la máscara para pintar encima de la imagen original los píxeles que 
     son detectados como error
@@ -105,7 +132,6 @@ def guardar_json(nombre, shape0, shape1, mascara):
     mascara (array): Array de 0s y 1s con la info de los pixeles que son un error
 
 '''
-
 
 def marcar_coloreando_encima(img, mascara):
     for i in range(0, img.shape[0]):

@@ -1254,7 +1254,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ed514a002bf15243971e7a37f59af0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ErrorCircle: {fileID: 0}
+  error_circle_go: {fileID: 7512640861768777425, guid: d31c242240378404dbe3a37d751552aa,
+    type: 3}
   testing_started: 0
   loading_next_level: 0
 --- !u!1 &547524383 stripped
@@ -1780,7 +1781,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: -0.1
   far clip plane: 1000
   field of view: 60
   orthographic: 1

@@ -21,20 +21,16 @@ struct CameraRotation
     public float Z;
     public float W;
 }
-
-struct MarkedPixels
-{
-    public int[] pixelX;
-    public int[] pixelY;
-}
 struct ScreenshotInfo
 {
     public string Name;
     public string Scene;
     public CameraPosition Position;
     public CameraRotation Rotation;
-    public MarkedPixels Pixels;
     public ImageRoute ImagePath;
+
+    public int NumOfObjects;
+    public List<KeyValuePair<int, int>> ObjectsPositions;
 }
 
 struct ImageRoute
@@ -43,7 +39,7 @@ struct ImageRoute
 }
 public class ErrorViewerManager : Singleton<ErrorViewerManager>
 {
-    public GameObject ErrorCircle;
+    public GameObject error_circle_go;
 
     private string camera_info_route;
     private string error_info_route;
@@ -176,7 +172,19 @@ public class ErrorViewerManager : Singleton<ErrorViewerManager>
     {
         if (CheckValidList())
         {
+            for (int i = 0; i < _screenshotinfo_list[screenshot_index].NumOfObjects; i++)
+            {
+                GameObject GO = Instantiate(error_circle_go, Camera.main.transform);
+                GO.transform.parent = null;
+                Debug.Log(_screenshotinfo_list[screenshot_index].ObjectsPositions[i]);
+                Vector3 newPos = Camera.main.ScreenToWorldPoint(new Vector3(_screenshotinfo_list[screenshot_index].ObjectsPositions[i].Value,
+                    Camera.main.pixelHeight - _screenshotinfo_list[screenshot_index].ObjectsPositions[i].Key, 0));
 
+                GO.transform.position = newPos;
+
+                Debug.Log(newPos);
+
+            }
         }
     }
 
@@ -273,18 +281,21 @@ public class ErrorViewerManager : Singleton<ErrorViewerManager>
 
                     // PIXELES MARCADOS
 
-                    object marked_pixels;
-                    (image_info as Dictionary<string, object>).TryGetValue("Pixeles_Marcados", out marked_pixels);
+                    object num_obj;
+                    (image_info as Dictionary<string, object>).TryGetValue("Numero_Objetos", out num_obj);
+                    new_screenshot.NumOfObjects = int.Parse(num_obj.ToString());
 
-                    foreach(object marked in (marked_pixels as List<object>))
+                    object pos_obj;
+                    (image_info as Dictionary<string, object>).TryGetValue("Posicion_Objetos", out pos_obj);
+
+                    new_screenshot.ObjectsPositions = new List<KeyValuePair<int, int>>();
+                    foreach(object pos in (pos_obj as List<object>))
                     {
-
                         object x, y;
-                        (marked as Dictionary<string, object>).TryGetValue("x", out x);
-                        (marked as Dictionary<string, object>).TryGetValue("y", out y);
+                        (pos as Dictionary<string, object>).TryGetValue("x", out x);
+                        (pos as Dictionary<string, object>).TryGetValue("y", out y);
 
-                       // Debug.Log(x.ToString());
-                       // Debug.Log(y.ToString());
+                        new_screenshot.ObjectsPositions.Add(new KeyValuePair<int, int>(int.Parse(x.ToString()), int.Parse(y.ToString())));
                     }
 
                     _screenshotinfo_list.Add(new_screenshot);
