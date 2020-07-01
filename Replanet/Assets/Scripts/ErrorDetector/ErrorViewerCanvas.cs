@@ -50,6 +50,6 @@ public class ErrorViewerCanvas : Singleton<ErrorViewerCanvas>
 
     public void AnalyzeScreenShots()
     {
-        ErrorViewerManager.Instance.ExeBatchFile(Application.dataPath + "../../../Error Detector/", "run.bat");
+        ErrorViewerManager.Instance.ExeBatchFile(Application.dataPath + "../../../", "run.bat");
     }
 }

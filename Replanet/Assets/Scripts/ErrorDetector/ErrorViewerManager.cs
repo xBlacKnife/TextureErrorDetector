@@ -29,7 +29,8 @@ struct ScreenshotInfo
     public CameraPosition Position;
     public CameraRotation Rotation;
     public ImageRoute ImagePath;
-
+    public int Width;
+    public int Height;
     public int NumOfObjects;
     public List<KeyValuePair<int, int>> ObjectsPositions;
 }
@@ -45,9 +46,6 @@ public class ErrorViewerManager : Singleton<ErrorViewerManager>
     private string camera_info_route;
     private string error_info_route;
     private List<ScreenshotInfo> _screenshotinfo_list;
-
-    private const int SCREENSHOT_WIDTH = 679;
-    private const int SCREENSHOT_HEIGHT = 382;
 
     int screenshot_index = 0;
     [HideInInspector]
@@ -182,8 +180,8 @@ public class ErrorViewerManager : Singleton<ErrorViewerManager>
                 GO.transform.parent = null;
 
                 Vector3 screenPos = new Vector3(
-                    (_screenshotinfo_list[screenshot_index].ObjectsPositions[i].Value * Camera.main.pixelWidth) / SCREENSHOT_WIDTH,
-                    Camera.main.pixelHeight - ((_screenshotinfo_list[screenshot_index].ObjectsPositions[i].Key * Camera.main.pixelHeight) / SCREENSHOT_HEIGHT), 0);
+                    (_screenshotinfo_list[screenshot_index].ObjectsPositions[i].Value * Camera.main.pixelWidth) / _screenshotinfo_list[screenshot_index].Width,
+                    Camera.main.pixelHeight - ((_screenshotinfo_list[screenshot_index].ObjectsPositions[i].Key * Camera.main.pixelHeight) / _screenshotinfo_list[screenshot_index].Height), 0);
 
                 Vector3 newPos = Camera.main.ScreenToWorldPoint(screenPos);
 
@@ -267,6 +265,17 @@ public class ErrorViewerManager : Singleton<ErrorViewerManager>
                             Z = float.Parse(z.ToString()),
                             W = float.Parse(w.ToString())
                         };
+                    }
+
+                    object width, height;
+                    if ((info.Value as Dictionary<string, object>).TryGetValue("Width", out width))
+                    {
+                        new_screenshot.Width = int.Parse(width.ToString());
+                    }
+
+                    if ((info.Value as Dictionary<string, object>).TryGetValue("Height", out height))
+                    {
+                        new_screenshot.Height = int.Parse(height.ToString());
                     }
 
                     // RUTA DE LA IMAGEN

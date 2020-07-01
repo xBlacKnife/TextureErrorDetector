@@ -108,6 +108,8 @@ public class ScreenShotManager : Singleton<ScreenShotManager>
 		newEvent.Add("Camera_Position", CameraPositions);
 		newEvent.Add("Camera_Rotation", CameraRatations);
 		newEvent.Add("Image_Directory", ImageDirectory);
+		newEvent.Add("Width", Camera.main.pixelWidth);
+		newEvent.Add("Height", Camera.main.pixelHeight);
 
 		//Al diccionario original, añadimos el diccionario anterior dentro de uno nuevo, que será el nombre de la captura.
 		dict.Add(screenshotName, newEvent);
