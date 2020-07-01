@@ -53,7 +53,7 @@ public class ImageComparatorManager : MonoBehaviour
 
     private void ShowImage()
     {
-        if(!showingImage)
+        if(!showingImage && _screenshotinfo_list.Count > 0)
             StartCoroutine(GetImage());
     }
     IEnumerator GetImage()
@@ -87,7 +87,7 @@ public class ImageComparatorManager : MonoBehaviour
         ///Result Texture
         Texture2D resultTex;
         resultTex = new Texture2D(8, 8, TextureFormat.DXT1, false);
-        using (WWW www = new WWW(resultRoute + _screenshotinfo_list[index][1] + ".jpg"))
+        using (WWW www = new WWW(resultRoute + _screenshotinfo_list[index][1] + ".png"))
         {
             yield return www;
             www.LoadImageIntoTexture(resultTex);

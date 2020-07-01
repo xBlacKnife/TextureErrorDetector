@@ -139,7 +139,7 @@ def save_in_folder(imageName, im, resultpath) :
 		else :
 			print ("%s created" % path)
 
-	p = cv2.imwrite(path + "/" + imageName + ".jpg", im)
+	p = cv2.imwrite(path + "/" + imageName + ".png", im)
 	
 
 
@@ -199,7 +199,7 @@ def export_info_toJSON(id, xSize, ySize, failure, imageName) :
 	return value: Si el archivo existe lo devuelve.
 """
 def find(name, path):
-	for file2 in glob.glob(path + "*.jpg") : 
+	for file2 in glob.glob(path + "*.png") : 
 		if name == os.path.basename(file2) : 
 			return file2
 
@@ -236,7 +236,7 @@ def analize(CapturePath = "", OriginalPath = "") :
 	#El path debe ser el de las imágenes capturadas
 
 	#Comprobamos todas las imágenes de la ruta
-	for file in glob.glob(CapturePath + "*.jpg") :
+	for file in glob.glob(CapturePath + "*.png") :
 		if not AlreadyAnalized(os.path.basename(file)) : #comprobamos si la imagen ya ha sido analizada
 			#Buscamos la ruta de la imagen original que queremos cargar para comparar
 			org = find(os.path.basename(file), './'+ OriginalPath )

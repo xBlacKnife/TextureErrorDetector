@@ -35,8 +35,8 @@ public class ScreenShotManager : Singleton<ScreenShotManager>
 	public void TakeCompareImages(string screenshotName)
     {
 		if(originalPhotoCompareMode)
-			TakeScreenShot(screenshotName, referenceRoute);
-		else TakeScreenShot(screenshotName, compareRoute);
+			TakeScreenShot(screenshotName, referenceRoute, ".png");
+		else TakeScreenShot(screenshotName, compareRoute, ".png");
 	}
 
 	private void Update()
@@ -50,11 +50,11 @@ public class ScreenShotManager : Singleton<ScreenShotManager>
 
 	public void TakeErrorScreenshot(string screenshotName)
     {
-		TakeScreenShot(screenshotName, screenshotRoute);
-		SaveCameraInfo(screenshotName);
+		TakeScreenShot(screenshotName, screenshotRoute, ".jpg");
+		SaveCameraInfo(screenshotName, ".jpg");
     }
 
-	private void TakeScreenShot(string SN, string route)
+	private void TakeScreenShot(string SN, string route, string format)
 	{
 		if (!Directory.Exists(screenshotRoute))
 		{
@@ -63,10 +63,10 @@ public class ScreenShotManager : Singleton<ScreenShotManager>
 
 		string screenshotName = "Screenshot_" + SN;
 
-		ScreenCapture.CaptureScreenshot(route + screenshotName + ".png");
+		ScreenCapture.CaptureScreenshot(route + screenshotName + format);
 	}
 
-	public void SaveCameraInfo(string screenshotName)
+	public void SaveCameraInfo(string screenshotName, string format)
 	{
 
 		screenshotName = "Screenshot_" + screenshotName;
@@ -100,7 +100,7 @@ public class ScreenShotManager : Singleton<ScreenShotManager>
 
 		//Añade la ruta de la imagen al diccionario.
 		Dictionary<string, object> ImageDirectory = new Dictionary<string, object>();
-		ImageDirectory.Add("Image", screenshotRoute + screenshotName + ".png");
+		ImageDirectory.Add("Image", screenshotRoute + screenshotName + format);
 
 		//Un nuevo diccionario que engloba el nivel, las posiciones y las rotaciones de la cámara, así como la ruta en la que se encuentra la imagen
 		Dictionary<string, object> newEvent = new Dictionary<string, object>();
