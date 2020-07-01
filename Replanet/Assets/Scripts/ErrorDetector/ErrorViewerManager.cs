@@ -7,6 +7,7 @@ using MiniJSON;
 using System;
 using Cinemachine;
 using UnityEngine.UI;
+using System.Diagnostics;
 
 struct CameraPosition
 {
@@ -44,6 +45,9 @@ public class ErrorViewerManager : Singleton<ErrorViewerManager>
     private string camera_info_route;
     private string error_info_route;
     private List<ScreenshotInfo> _screenshotinfo_list;
+
+    private const int SCREENSHOT_WIDTH = 679;
+    private const int SCREENSHOT_HEIGHT = 382;
 
     int screenshot_index = 0;
     [HideInInspector]
@@ -176,14 +180,14 @@ public class ErrorViewerManager : Singleton<ErrorViewerManager>
             {
                 GameObject GO = Instantiate(error_circle_go, Camera.main.transform);
                 GO.transform.parent = null;
-                Debug.Log(_screenshotinfo_list[screenshot_index].ObjectsPositions[i]);
-                Vector3 newPos = Camera.main.ScreenToWorldPoint(new Vector3(_screenshotinfo_list[screenshot_index].ObjectsPositions[i].Value,
-                    Camera.main.pixelHeight - _screenshotinfo_list[screenshot_index].ObjectsPositions[i].Key, 0));
+
+                Vector3 screenPos = new Vector3(
+                    (_screenshotinfo_list[screenshot_index].ObjectsPositions[i].Value * Camera.main.pixelWidth) / SCREENSHOT_WIDTH,
+                    Camera.main.pixelHeight - ((_screenshotinfo_list[screenshot_index].ObjectsPositions[i].Key * Camera.main.pixelHeight) / SCREENSHOT_HEIGHT), 0);
+
+                Vector3 newPos = Camera.main.ScreenToWorldPoint(screenPos);
 
                 GO.transform.position = newPos;
-
-                Debug.Log(newPos);
-
             }
         }
     }
@@ -302,5 +306,18 @@ public class ErrorViewerManager : Singleton<ErrorViewerManager>
                 }
             }
         }
+    }
+
+    public bool ExeBatchFile(string directory, string filename)
+    {
+        Process foo = new Process();
+        foo.StartInfo.FileName = filename;
+        foo.StartInfo.WorkingDirectory = directory;
+        foo.StartInfo.CreateNoWindow = false;
+        foo.Start();
+        foo.WaitForExit();
+        foo.Dispose();
+
+        return true;
     }
 }

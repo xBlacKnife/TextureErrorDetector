@@ -84,8 +84,8 @@ def guardar_json(nombre, shape0, shape1, mascara):
     pixeles_marcados[nombre]['Posicion_Objetos'] = []
     for pos in objects_pos:
         coordenadas = {}
-        coordenadas['x'] = int(pos[0])
-        coordenadas['y'] = int(pos[1])
+        coordenadas['x'] = int(round(pos[0]))
+        coordenadas['y'] = int(round(pos[1]))
         pixeles_marcados[nombre]['Posicion_Objetos'].append(coordenadas)
 
 
@@ -101,7 +101,10 @@ def guardar_json(nombre, shape0, shape1, mascara):
     with open('texture_error' + EXTENSION_JSON, 'w') as outfile:
         json.dump(data, outfile, indent=2)
 
-
+'''
+    Se utiliza para cuantificar cuántos objetos hay en la imagen marcada y cual es la posición de sus centros. 
+    Estos datos se usaran posteriormente para situar el circulo que marca el fallo in-game al desarrollador en Unity.
+'''
 def object_quantification(image_name):
     # read image into numpy array
     image = Image.open(image_name)
@@ -117,8 +120,6 @@ def object_quantification(image_name):
     labeled, nr_objects = ndimage.label(dnaf > T) # `dna[:,:,0]>T` for red-dot case
 
     centers = center_of_mass(labeled, labels=labeled, index=range(1, nr_objects+1))
-
-    print(centers)
 
     return nr_objects, centers
 

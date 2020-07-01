@@ -47,4 +47,9 @@ public class ErrorViewerCanvas : Singleton<ErrorViewerCanvas>
     {
         ErrorViewerManager.Instance.PrevError();
     }
+
+    public void AnalyzeScreenShots()
+    {
+        ErrorViewerManager.Instance.ExeBatchFile(Application.dataPath + "../../../Error Detector/", "run.bat");
+    }
 }
