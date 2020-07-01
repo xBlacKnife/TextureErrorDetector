@@ -63,7 +63,7 @@ public class ScreenShotManager : Singleton<ScreenShotManager>
 
 		string screenshotName = "Screenshot_" + SN;
 
-		ScreenCapture.CaptureScreenshot(route + screenshotName + ".jpg");
+		ScreenCapture.CaptureScreenshot(route + screenshotName + ".png");
 	}
 
 	public void SaveCameraInfo(string screenshotName)
@@ -100,7 +100,7 @@ public class ScreenShotManager : Singleton<ScreenShotManager>
 
 		//Añade la ruta de la imagen al diccionario.
 		Dictionary<string, object> ImageDirectory = new Dictionary<string, object>();
-		ImageDirectory.Add("Image", screenshotRoute + screenshotName + ".jpg");
+		ImageDirectory.Add("Image", screenshotRoute + screenshotName + ".png");
 
 		//Un nuevo diccionario que engloba el nivel, las posiciones y las rotaciones de la cámara, así como la ruta en la que se encuentra la imagen
 		Dictionary<string, object> newEvent = new Dictionary<string, object>();
