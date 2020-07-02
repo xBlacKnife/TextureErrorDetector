@@ -35,6 +35,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: 4af7fa5fc19c71a4b81671f2a5fe3cc3
+  - enabled: 1
+    path: Assets/Scenes/ComparatorTestScene.unity
+    guid: 7a18fb0b8059246409963d43807a72c2
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: c419c0fceb6ffc64bbc09d82d1ba8846,
       type: 2}

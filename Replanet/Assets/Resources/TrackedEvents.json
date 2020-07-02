@@ -377,6 +377,7 @@
           "level": 1
         }
       },
+<<<<<<< HEAD
       "01/07/2020 18:06:53": {
         "6e437c3b186c35bf2afa96a6a1998193655fc1668556327a11fa35ac2f779514": {
           "eventType_": 1,
@@ -403,10 +404,62 @@
           "eventType_": 1,
           "eventName_": 4,
           "TimeStamp": "01/07/2020 18:07:26",
+=======
+      "01/07/2020 17:08:00": {
+        "3bcb3e8a315c3bc671ccb6c39c02e4d3bf0c331e0b8a3b34583e98ee7cc50e21": {
+          "eventType_": 1,
+          "eventName_": 5,
+          "TimeStamp": "01/07/2020 17:08:16",
+          "clicks": -1,
+          "level": 0
+        },
+        "9e47ce1c1468e675e49a8bc3182be804e1734e97bf669e989b2f7e22b0df539b": {
+          "eventType_": 1,
+          "eventName_": 6,
+          "TimeStamp": "01/07/2020 17:08:21",
+          "clicks": -1,
+          "level": 1
+        },
+        "ad57346c82cef0b593c419fc045254d31909383720d701602090f12e68cbed9b": {
+          "eventType_": 1,
+          "eventName_": 0,
+          "TimeStamp": "01/07/2020 17:08:25",
           "clicks": -1,
           "level": 1
         }
       },
+      "01/07/2020 19:45:09": {
+        "5fc52d7993838f490b563bd4c6c3abf3e3998bae03433eac5af3177951a8152c": {
+          "eventType_": 1,
+          "eventName_": 5,
+          "TimeStamp": "01/07/2020 19:46:39",
+          "clicks": -1,
+          "level": 0
+        },
+        "76ae3b14039a03f167422ee30cc97921c2bfdd7c05fac93e0aeaa15d1d3b1a7a": {
+          "eventType_": 1,
+          "eventName_": 6,
+          "TimeStamp": "01/07/2020 19:46:41",
+          "clicks": -1,
+          "level": 1
+        },
+        "add90116e0fb4567f18014828ca9b2811e32f5128bdb2df801fb57a4f5bc0051": {
+          "eventType_": 1,
+          "eventName_": 0,
+          "TimeStamp": "01/07/2020 19:46:44",
+          "clicks": -1,
+          "level": 1
+        },
+        "c22532c5049cf963a43d9d10c582ad823a768298d2dd3f1d9375b1a458aab5ee": {
+          "eventType_": 1,
+          "eventName_": 4,
+          "TimeStamp": "01/07/2020 19:46:52",
+>>>>>>> 090fb630eddc37bf7a07aad47aa03099e4b524b0
+          "clicks": -1,
+          "level": 1
+        }
+      },
+<<<<<<< HEAD
       "01/07/2020 18:10:22": {
         "c41845905c086bca666a9abc9fe990b4a1213743eaa7cdd17196fa9b846c5e25": {
           "eventType_": 1,
@@ -433,6 +486,57 @@
           "eventType_": 1,
           "eventName_": 4,
           "TimeStamp": "01/07/2020 18:10:54",
+=======
+      "01/07/2020 19:58:32": {
+        "257b011ccccae6653a8efa5204faff33aa0522f9503f38f7d1f95522fd02748a": {
+          "eventType_": 1,
+          "eventName_": 5,
+          "TimeStamp": "01/07/2020 19:58:51",
+          "clicks": -1,
+          "level": 0
+        },
+        "a1790fb59b867a3cc295c7f3cbd1f006f40b9152fd8e62510f141a5d4e16ba06": {
+          "eventType_": 1,
+          "eventName_": 6,
+          "TimeStamp": "01/07/2020 19:58:53",
+          "clicks": -1,
+          "level": 1
+        },
+        "d755d55fc6b33bf8763c62703782aa1fb10b1e5da8e8146515ac73285283f0db": {
+          "eventType_": 1,
+          "eventName_": 0,
+          "TimeStamp": "01/07/2020 19:58:56",
+          "clicks": -1,
+          "level": 1
+        },
+        "a1f8157fa4262aacfd70944b2f5088daff5697de763edeaa555233eabf884b27": {
+          "eventType_": 1,
+          "eventName_": 4,
+          "TimeStamp": "01/07/2020 19:59:03",
+          "clicks": -1,
+          "level": 1
+        }
+      },
+      "01/07/2020 20:00:16": {
+        "dcd36e1f1966d2bdfdbbe04b1659b4c24ef89634f432bbc875c98115c5457c8e": {
+          "eventType_": 1,
+          "eventName_": 5,
+          "TimeStamp": "01/07/2020 20:00:29",
+          "clicks": -1,
+          "level": 0
+        },
+        "77a716a45bfc80c55870daefd8adefb94b2ad79dff338449452acfdf5e44741c": {
+          "eventType_": 1,
+          "eventName_": 6,
+          "TimeStamp": "01/07/2020 20:00:32",
+          "clicks": -1,
+          "level": 1
+        },
+        "978283769b7ba929b361cb8c0dfe2dd55068476aca37d2d86555e15732d5376d": {
+          "eventType_": 1,
+          "eventName_": 0,
+          "TimeStamp": "01/07/2020 20:00:35",
+>>>>>>> 090fb630eddc37bf7a07aad47aa03099e4b524b0
           "clicks": -1,
           "level": 1
         }

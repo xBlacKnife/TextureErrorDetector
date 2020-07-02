@@ -139,7 +139,7 @@ def save_in_folder(imageName, im, resultpath) :
 		else :
 			print ("%s created" % path)
 
-	p = cv2.imwrite(path + "/" + imageName + ".jpg", im)
+	p = cv2.imwrite(path + "/" + imageName + ".png", im)
 	
 
 
@@ -165,22 +165,24 @@ def create_id() :
 		imageName (string): Nombre de la imagen.
 """
 def export_info_toJSON(id, xSize, ySize, failure, imageName) :
-	if(not os.path.exists(os.getcwd()+"/CompareLog.json")) :
-		data = {}
-		data['Results'] = []
-		with open('CompareLog.json', 'w') as outfile :
-			json.dump(data, outfile)
+	
+	imagesInfo = {}
+	imagesInfo[id] = {}
+	imagesInfo[id]["Image"] = imageName
+	imagesInfo[id]["X_Size"] = xSize
+	imagesInfo[id]["Y_Size"] = ySize
+	imagesInfo[id]["failure"] = failure
+
+	if not os.path.exists(os.getcwd()+"/CompareLog.json") :
+		with open(os.getcwd()+"/CompareLog.json", 'w') as outfile :
+			json.dump({}, outfile, indent=2)
+
 			outfile.close()
 
 	with open('CompareLog.json') as json_file :
 		data = json.load(json_file)
-		data['Results'].append({
-			'id' : id,
-			'Image' : imageName,
-			'X_Size' : xSize,
-			'Y_Size' : ySize,
-			'failure' : failure 
-		})
+		
+	data.update(imagesInfo)
 
 	with open('CompareLog.json', 'w') as outfile :
 		json.dump(data, outfile)
@@ -215,8 +217,8 @@ def AlreadyAnalized(name) :
 	if(os.path.exists(os.getcwd()+"/CompareLog.json")) :
 		with open('CompareLog.json') as json_file :
 			data = json.load(json_file)
-			for i in data['Results'] :
-				if i["Image"] == name :
+			for i in data :
+				if data[i]['Image'] == name :
 					print(name + " Already Analized") 
 					return True
 	return False
@@ -255,8 +257,12 @@ def analize(CapturePath = "", OriginalPath = "") :
 				#Calculamos la diferencia con el método SSIM
 				#diff, score = SSIM(greyOriginal, greyNew)
 
-				#Calculamos la diferencia con el método de CV2
-				diff, score = comparaCV2(greyOriginal, greyNew)
+				#Calculamos la diferencia con el método de CV2 
+				#para evitar errores hay que hacer la comparación 
+				#de las 2 maneras y sumarlas
+				diff1, score = comparaCV2(greyOriginal, greyNew)
+				diff2, score = comparaCV2(greyNew, greyOriginal)
+				diff=(diff1+diff2)/2 #dividimos entre 2 para asegurar que estamos en el rango
 
 				#----------------------------------------------------
 
