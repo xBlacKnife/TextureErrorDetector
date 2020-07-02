@@ -1,0 +1,78 @@
+{
+  "Screenshot_TestImage77,37226": {
+    "Scene": "Level0",
+    "Camera_Position": {
+      "X": "-0,1483727",
+      "Y": "7,024297",
+      "Z": "-3,356323"
+    },
+    "Camera_Rotation": {
+      "X": "0,330366",
+      "Y": "0,2432104",
+      "Z": "-0,08852133",
+      "W": "0,9076734"
+    },
+    "Image_Directory": {
+      "Image": "C:/Users/ruide/Desktop/Clases Universidad/Carrera/Cuarto/Usabilidad y análisis de videojuegos/TextureErrorDetector/Replanet/Assets../../../Error Detector/Originales/Screenshot_TestImage77,37226.jpg"
+    },
+    "Width": 1738,
+    "Height": 978
+  },
+  "Screenshot_TestImage95,77469": {
+    "Scene": "Level1",
+    "Camera_Position": {
+      "X": "3,146605",
+      "Y": "7,024296",
+      "Z": "-2,942622"
+    },
+    "Camera_Rotation": {
+      "X": "0,330366",
+      "Y": "0,2432104",
+      "Z": "-0,08852133",
+      "W": "0,9076734"
+    },
+    "Image_Directory": {
+      "Image": "C:/Users/ruide/Desktop/Clases Universidad/Carrera/Cuarto/Usabilidad y análisis de videojuegos/TextureErrorDetector/Replanet/Assets../../../Error Detector/Originales/Screenshot_TestImage95,77469.jpg"
+    },
+    "Width": 1738,
+    "Height": 978
+  },
+  "Screenshot_TestImage50,25871": {
+    "Scene": "Level1",
+    "Camera_Position": {
+      "X": "-0,3163323",
+      "Y": "7,024298",
+      "Z": "-4,14945"
+    },
+    "Camera_Rotation": {
+      "X": "0,330366",
+      "Y": "0,2432104",
+      "Z": "-0,08852133",
+      "W": "0,9076734"
+    },
+    "Image_Directory": {
+      "Image": "C:/Users/ruide/Desktop/Clases Universidad/Carrera/Cuarto/Usabilidad y análisis de videojuegos/TextureErrorDetector/Replanet/Assets../../../Error Detector/Originales/Screenshot_TestImage50,25871.jpg"
+    },
+    "Width": 1738,
+    "Height": 978
+  },
+  "Screenshot_TestImage52,64543": {
+    "Scene": "Level1",
+    "Camera_Position": {
+      "X": "2,194749",
+      "Y": "7,024296",
+      "Z": "-2,636314"
+    },
+    "Camera_Rotation": {
+      "X": "0,330366",
+      "Y": "0,2432104",
+      "Z": "-0,08852133",
+      "W": "0,9076734"
+    },
+    "Image_Directory": {
+      "Image": "C:/Users/ruide/Desktop/Clases Universidad/Carrera/Cuarto/Usabilidad y análisis de videojuegos/TextureErrorDetector/Replanet/Assets../../../Error Detector/Originales/Screenshot_TestImage52,64543.jpg"
+    },
+    "Width": 1738,
+    "Height": 978
+  }
+}
